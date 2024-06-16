@@ -1,0 +1,55 @@
+---
+import Image from "astro/components/Image.astro";
+
+interface NavbarMenu {
+  icon: string;
+  href: string;
+  name: string;
+}
+
+const listNavbar: NavbarMenu[] = [
+  {
+    icon: "/svg/header-design.svg",
+    href: "#",
+    name: "design",
+  },
+  {
+    icon: "/svg/header-code.svg",
+    href: "#",
+    name: "code",
+  },
+  {
+    icon: "/svg/header-design.svg",
+    href: "#",
+    name: "collenctions",
+  },
+  {
+    icon: "/svg/header-about.svg",
+    href: "#",
+    name: "about",
+  },
+  {
+    icon: "/svg/header-contact.svg",
+    href: "#",
+    name: "contact",
+  },
+];
+---
+
+<header class="flex items-center justify-around h-[90px]">
+  <p>LOGO</p>
+  <nav>
+    <li class="flex items-center gap-x-5">
+      {
+        listNavbar.map((menu) => (
+          <ul>
+            <a href={menu.href} class="flex items-center gap-x-2 font-normal">
+                <Image src={menu.icon} width="16" height="16" alt={menu.name} />
+                {menu.name}
+            </a>
+          </ul>
+        ))
+      }
+    </li>
+  </nav>
+</header>
