@@ -1,0 +1,86 @@
+---
+import type { Cardpost } from "../../interface";
+import Card from "./Card.astro";
+
+
+
+const listCard: Cardpost[] = [
+  {
+    image: "/image/pexels-pixabay-40185.jpg",
+    tag: {
+      icon: "/svg/tag-webSite.svg",
+      name: "website",
+    },
+    date: "29th feb 2024",
+    title: "About version 8",
+    description: `Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Voluptatibus, quisquam. Eos sit odit voluptatibus libero. Lorem
+              ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus,
+              quisquam. Eos sit odit voluptatibus libero.`,
+  },
+  {
+    image: "/image/pexels-pixabay-40185.jpg",
+    tag: {
+      icon: "/svg/tag-webSite.svg",
+      name: "website",
+    },
+    date: "29th feb 2024",
+    title: "About version 8",
+    description: `Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Voluptatibus, quisquam. Eos sit odit voluptatibus libero. Lorem
+              ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus,
+              quisquam. Eos sit odit voluptatibus libero.`,
+  },
+  {
+    image: "/image/pexels-pixabay-40185.jpg",
+    tag: {
+      icon: "/svg/tag-webSite.svg",
+      name: "website",
+    },
+    date: "29th feb 2024",
+    title: "About version 8",
+    description: `Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Voluptatibus, quisquam. Eos sit odit voluptatibus libero. Lorem
+              ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus,
+              quisquam. Eos sit odit voluptatibus libero.`,
+  },
+  {
+    image: "/image/pexels-pixabay-40185.jpg",
+    tag: {
+      icon: "/svg/tag-webSite.svg",
+      name: "website",
+    },
+    date: "29th feb 2024",
+    title: "About version 8",
+    description: `Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Voluptatibus, quisquam. Eos sit odit voluptatibus libero. Lorem
+              ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus,
+              quisquam. Eos sit odit voluptatibus libero.`,
+  },
+];
+---
+
+<section class="max-w-[1440px] mx-auto py-12">
+  <article
+    class="flex items-center justify-between max-w-[1440px] mx-auto mb-5"
+  >
+    <h2 class="text-3xl font-bold">What´s new</h2>
+    <p class="text-base font-semibold">view the archive</p>
+  </article>
+  <ul class="flex flex-wrap justify-between gap-y-11">
+    {
+      listCard.map((data) => {
+        const { image, tag, date, title, description } = data;
+        return (
+          <Card
+            image={image}
+            tag={tag}
+            date={date}
+            title={title}
+            description={description}
+          />
+        );
+      })
+    }
+  </ul>
+</section>

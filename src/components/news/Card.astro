@@ -2,15 +2,9 @@
 import Image from 'astro/components/Image.astro';
 import Tag from './Tag.astro';
 import Date from './Date.astro';
+import type { Cardpost } from '../../interface';
 
 
-interface Cardpost {
-  image: string;
-  tag: { icon: string; name: string };
-  date: string;
-  title: string;
-  description: string;
-}
 
 const { image, tag, date, title, description } = Astro.props as Cardpost;
 ---
