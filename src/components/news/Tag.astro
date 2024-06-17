@@ -1,0 +1,17 @@
+---
+import Image from "astro/components/Image.astro";
+
+interface Tagcard {
+  icon: string;
+  name: string;
+}
+
+const { tag } = Astro.props as Tagcard;
+---
+
+<div class="flex items-center gap-x-2">
+  <div class="p-1.5 rounded-lg shadow-2xl border border-black">
+    <Image src={tag.icon} width={24} height={24} alt={"web site"} />
+  </div>
+  <p class="text-base font-medium">{tag.name}</p>
+</div>

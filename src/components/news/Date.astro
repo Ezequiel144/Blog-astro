@@ -1,0 +1,17 @@
+---
+import Image from "astro/components/Image.astro";
+
+const {date} = Astro.props
+---
+
+<div class="flex items-center gap-x-2">
+    <div class="p-1.5 rounded-lg shadow-2xl border border-black">
+      <Image
+        src={"/svg/tag-calendar.svg"}
+        width={24}
+        height={24}
+        alt={"web site"}
+      />
+    </div>
+    <p class="text-base font-medium">{date}</p>
+  </div>

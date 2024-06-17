@@ -1,0 +1,38 @@
+---
+import Image from "astro/components/Image.astro";
+---
+
+<section class="flex flex-col gap-y-2">
+    <h1 class="text-5xl text-center mx-auto font-extrabold max-w-[380px]">
+      exploring web design craft
+    </h1>
+    <p class="text-base font-normal mx-auto text-center max-w-[280px]">
+      tips and tutorials about the design and build of web interfaces
+    </p>
+    <article class="flex gap-3 w-fit mx-auto">
+      <div class="flex gap-x-2 items-center">
+        <div class="p-2 rounded-full bg-darkGreen-300">
+          <Image
+            src={"/svg/header-design.svg"}
+            width={16}
+            height={16}
+            alt={"explore design"}
+          />
+        </div>
+        <p>explore design</p>
+      </div>
+      <div class="flex gap-x-2 items-center">
+        <div
+          class="p-2 rounded-full bg-darkGreen-300 flex items-center justify-center"
+        >
+          <Image
+            src={"/svg/header-code.svg"}
+            width={16}
+            height={16}
+            alt={"explore code"}
+          />
+        </div>
+        <p>explore code</p>
+      </div>
+    </article>
+  </section>

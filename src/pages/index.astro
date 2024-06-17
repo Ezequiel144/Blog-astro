@@ -1,6 +1,8 @@
 ---
 import Image from "astro/components/Image.astro";
 import Layout from "../layouts/Layout.astro";
+import Card from "../components/news/Card.astro";
+import Hero from "../components/hero/Hero.astro";
 
 interface Cardpost {
   image: string;
@@ -68,40 +70,7 @@ const listCard: Cardpost[] = [
 
 <Layout title="blog-inicio">
   <main class="w-full min-h-screen">
-    <section class="flex flex-col gap-y-2">
-      <h1 class="text-5xl text-center mx-auto font-extrabold max-w-[380px]">
-        exploring web design craft
-      </h1>
-      <p class="text-base font-normal mx-auto text-center max-w-[280px]">
-        tips and tutorials about the design and build of web interfaces
-      </p>
-      <article class="flex gap-3 w-fit mx-auto">
-        <div class="flex gap-x-2 items-center">
-          <div class="p-2 rounded-full bg-darkGreen-300">
-            <Image
-              src={"/svg/header-design.svg"}
-              width={16}
-              height={16}
-              alt={"explore design"}
-            />
-          </div>
-          <p>explore design</p>
-        </div>
-        <div class="flex gap-x-2 items-center">
-          <div
-            class="p-2 rounded-full bg-darkGreen-300 flex items-center justify-center"
-          >
-            <Image
-              src={"/svg/header-code.svg"}
-              width={16}
-              height={16}
-              alt={"explore code"}
-            />
-          </div>
-          <p>explore code</p>
-        </div>
-      </article>
-    </section>
+	<Hero />
     <section class="max-w-[1440px] mx-auto">
       <article class="flex items-center justify-between max-w-[1440px] mx-auto mb-5">
         <h2 class="text-3xl font-bold">What´s new</h2>
@@ -112,50 +81,14 @@ const listCard: Cardpost[] = [
           listCard.map((data) => {
             const { image, tag, date, title, description } = data;
             return (
-              <li class="w-[48%] h-full rounded-lg shadow-md">
-                {/* imagen */}
-                <Image
-                  src={image}
-                  class={"rounded-t-lg object-cover h-[60%] w-full"}
-                  width={620}
-                  height={300}
-                  alt={"image blog"}
-                />
-                {/* contenedor de textos */}
-                <section class="flex flex-col justify-between bg-white h-[40%] rounded-b-lg gap-y-5 p-10">
-                  {/* contenedor de tags */}
-                  <article class="flex items-center gap-x-5">
-                    <div class="flex items-center gap-x-2">
-                      <div class="p-1.5 rounded-lg shadow-2xl border border-black">
-                        <Image
-                          src={tag.icon}
-                          width={24}
-                          height={24}
-                          alt={"web site"}
-                        />
-                      </div>
-                      <p class="text-base font-medium">{tag.name}</p>
-                    </div>
-                    <div class="flex items-center gap-x-2">
-                      <div class="p-1.5 rounded-lg shadow-2xl border border-black">
-                        <Image
-                          src={"/svg/tag-calendar.svg"}
-                          width={24}
-                          height={24}
-                          alt={"web site"}
-                        />
-                      </div>
-                      <p class="text-base font-medium">{date}</p>
-                    </div>
-                  </article>
-                  <h3 class="text-5xl font-bold">{title}</h3>
-                  <p class="text-base font-regular">{description}</p>
-                </section>
-              </li>
+              <Card image={image} tag={tag} date={date} title={title} description={description}/>
             );
           })
         }
       </ul>
     </section>
+	<section>
+
+	</section>
   </main>
 </Layout>
