@@ -84,15 +84,17 @@ const listDesignCards: Cardpost[]= [
     class="flex items-center justify-between max-w-[1440px] mx-auto mb-5"
   >
     <h2 class="text-3xl font-bold">
-      popular <span class="text-yellow-500">code</span>
+      popular <span class="text-orange-500">design</span>
     </h2>
-    <p class="text-base font-semibold">explore code</p>
+    <p class="text-base font-semibold">explore design</p>
   </article>
   <ul class="flex flex-wrap justify-between gap-10">
     {
       listDesignCards.map((card) => {
         const { tag, title, description } = card;
-        return <CardMini tag={tag} title={title} description={description} />;
+        return (
+          <CardMini tag={tag} title={title} description={description}/>
+        );
       })
     }
   </ul>

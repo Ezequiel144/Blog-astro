@@ -1,0 +1,169 @@
+---
+import Image from "astro/components/Image.astro";
+import Layout from "../layouts/Layout.astro";
+import Tag from "../components/news/Tag.astro";
+import CardFilter from "../components/CardFilter.astro";
+
+const listMenuDesign = [
+  {
+    icon: "design",
+    name: "ux design",
+  },
+  {
+    icon: "design",
+    name: "ux design",
+  },
+  {
+    icon: "design",
+    name: "ux design",
+  },
+  {
+    icon: "design",
+    name: "ux design",
+  },
+  {
+    icon: "design",
+    name: "ux design",
+  },
+  {
+    icon: "design",
+    name: "ux design",
+  },
+];
+
+const listCardDesign = [
+  {
+    image: "/image/pexels-tranmautritam-326502.jpg",
+    tag: {
+      icon: "/svg/tag-webSite.svg",
+      name: "website",
+    },
+    title: "the best ink trap typefaces for website",
+    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
+            ipsam eos impedit quam minus optio officiis voluptas cupiditate.
+            Tempora dolore illo aspernatur tempore eveniet quia.`,
+  },
+  {
+    image: "/image/pexels-tranmautritam-326502.jpg",
+    tag: {
+      icon: "/svg/tag-webSite.svg",
+      name: "website",
+    },
+    title: "the best ink trap typefaces for website",
+    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
+            ipsam eos impedit quam minus optio officiis voluptas cupiditate.
+            Tempora dolore illo aspernatur tempore eveniet quia.`,
+  },
+  {
+    image: "/image/pexels-tranmautritam-326502.jpg",
+    tag: {
+      icon: "/svg/tag-webSite.svg",
+      name: "website",
+    },
+    title: "the best ink trap typefaces for website",
+    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
+            ipsam eos impedit quam minus optio officiis voluptas cupiditate.
+            Tempora dolore illo aspernatur tempore eveniet quia.`,
+  },
+  {
+    image: "/image/pexels-tranmautritam-326502.jpg",
+    tag: {
+      icon: "/svg/tag-webSite.svg",
+      name: "website",
+    },
+    title: "the best ink trap typefaces for website",
+    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
+            ipsam eos impedit quam minus optio officiis voluptas cupiditate.
+            Tempora dolore illo aspernatur tempore eveniet quia.`,
+  },
+  {
+    image: "/image/pexels-tranmautritam-326502.jpg",
+    tag: {
+      icon: "/svg/tag-webSite.svg",
+      name: "website",
+    },
+    title: "the best ink trap typefaces for website",
+    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
+            ipsam eos impedit quam minus optio officiis voluptas cupiditate.
+            Tempora dolore illo aspernatur tempore eveniet quia.`,
+  },
+  {
+    image: "/image/pexels-tranmautritam-326502.jpg",
+    tag: {
+      icon: "/svg/tag-webSite.svg",
+      name: "website",
+    },
+    title: "the best ink trap typefaces for website",
+    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
+            ipsam eos impedit quam minus optio officiis voluptas cupiditate.
+            Tempora dolore illo aspernatur tempore eveniet quia.`,
+  },
+  {
+    image: "/image/pexels-tranmautritam-326502.jpg",
+    tag: {
+      icon: "/svg/tag-webSite.svg",
+      name: "website",
+    },
+    title: "the best ink trap typefaces for website",
+    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
+            ipsam eos impedit quam minus optio officiis voluptas cupiditate.
+            Tempora dolore illo aspernatur tempore eveniet quia.`,
+  },
+  {
+    image: "/image/pexels-tranmautritam-326502.jpg",
+    tag: {
+      icon: "/svg/tag-webSite.svg",
+      name: "website",
+    },
+    title: "the best ink trap typefaces for website",
+    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
+            ipsam eos impedit quam minus optio officiis voluptas cupiditate.
+            Tempora dolore illo aspernatur tempore eveniet quia.`,
+  },
+];
+---
+
+<Layout title="blog-design">
+  <main class="w-full min-h-screen">
+    <section
+      class="max-w-[1440px] h-[400px] mx-auto py-12 flex items-start justify-between gap-8"
+    >
+      <article class="w-[35%] flex flex-col gap-y-3">
+        <h1 class="text-6xl font-bold">design</h1>
+        <p class="text-base">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus
+          optio, beatae dolor ab aliquam vero debitis consequatur cum.
+        </p>
+      </article>
+      <article class="w-fit h-full">
+        <ul class="w-fit flex flex-wrap justify-end gap-8">
+          {
+            listMenuDesign.map((menu) => (
+              <li class="w-[250px]">
+                {menu.icon}
+                <p class="py-3 border-b border-gray-300 text-lg font-semibold">
+                  {menu.name}
+                </p>
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+    </section>
+    <ul class="max-w-[1440px] mx-auto flex flex-wrap justify-between gap-y-8">
+      {
+        listCardDesign.map((item) => {
+          const { image, tag, title, description } = item;
+          return (
+            <CardFilter
+              image={image}
+              title={title}
+              description={description}
+              tag={tag}
+            />
+          );
+        })
+      }
+    </ul>
+  </main>
+</Layout>

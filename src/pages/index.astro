@@ -1,84 +1,19 @@
 ---
-import Image from "astro/components/Image.astro";
+import Code from "../components/code/Code.astro";
+import ContactUs from "../components/contactUs/ContactUs.astro";
+import Design from "../components/design/Design.astro";
 import Hero from "../components/hero/Hero.astro";
 import New from "../components/news/New.astro";
 import Layout from "../layouts/Layout.astro";
-import Code from "../components/code/Code.astro";
 
-const listDesignCards = [
-  {
-    tag: {
-      icon: "/svg/tag-quickTip.svg",
-      name: "quick tip",
-    },
-    title: "illustrator quick tip: aling to key object",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ab
-              repellat nihil officia iste, aspernatur natus odio veritatis
-              similique deleniti minus commodi eveniet consectetur maxime veniam
-              magnam molestias facere voluptatem.`,
-  },
-  {
-    tag: {
-      icon: "/svg/tag-quickTip.svg",
-      name: "quick tip",
-    },
-    title: "illustrator quick tip: aling to key object",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ab
-              repellat nihil officia iste, aspernatur natus odio veritatis
-              similique deleniti minus commodi eveniet consectetur maxime veniam
-              magnam molestias facere voluptatem.`,
-  },
-  {
-    tag: {
-      icon: "/svg/tag-quickTip.svg",
-      name: "quick tip",
-    },
-    title: "illustrator quick tip: aling to key object",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ab
-              repellat nihil officia iste, aspernatur natus odio veritatis
-              similique deleniti minus commodi eveniet consectetur maxime veniam
-              magnam molestias facere voluptatem.`,
-  },
-  {
-    tag: {
-      icon: "/svg/tag-quickTip.svg",
-      name: "quick tip",
-    },
-    title: "illustrator quick tip: aling to key object",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ab
-              repellat nihil officia iste, aspernatur natus odio veritatis
-              similique deleniti minus commodi eveniet consectetur maxime veniam
-              magnam molestias facere voluptatem.`,
-  },
-  {
-    tag: {
-      icon: "/svg/tag-quickTip.svg",
-      name: "quick tip",
-    },
-    title: "illustrator quick tip: aling to key object",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ab
-              repellat nihil officia iste, aspernatur natus odio veritatis
-              similique deleniti minus commodi eveniet consectetur maxime veniam
-              magnam molestias facere voluptatem.`,
-  },
-  {
-    tag: {
-      icon: "/svg/tag-quickTip.svg",
-      name: "quick tip",
-    },
-    title: "illustrator quick tip: aling to key object",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ab
-              repellat nihil officia iste, aspernatur natus odio veritatis
-              similique deleniti minus commodi eveniet consectetur maxime veniam
-              magnam molestias facere voluptatem.`,
-  },
-];
 ---
 
 <Layout title="blog-inicio">
   <main class="w-full min-h-screen">
     <Hero />
     <New />
-	<Code />
+    <Design />
+    <Code />
+    <!-- <ContactUs /> -->
   </main>
 </Layout>

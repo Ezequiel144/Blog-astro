@@ -1,0 +1,13 @@
+---
+const { label, subLabel, inputType } = Astro.props;
+---
+
+<label class="flex flex-col text-sm font-semibold">
+  first name
+  {label}
+  <span class="text-xs font-normal">{subLabel}</span>
+  <input
+    type={inputType}
+    class="rounded-lg h-10 shadow-inner border border-gray-200 mt-2"
+  />
+</label>

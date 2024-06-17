@@ -1,0 +1,22 @@
+---
+import InputsForm from "./InputsForm.astro";
+---
+
+<form class="flex flex-col gap-y-3 h-full">
+  <InputsForm
+    label="first name"
+    subLabel="What do you go by?"
+    inputType="text"
+  />
+  <InputsForm
+    label="email"
+    subLabel="You best email address"
+    inputType="email"
+  />
+  <div class="flex items-center justify-between">
+    <p class="text-sm text-darkGreen-600">join 700+ designers</p>
+    <button class="px-3 py-1.5 bg-yellow-500 rounded-lg text-base font-normal"
+      >sing me up</button
+    >
+  </div>
+</form>
