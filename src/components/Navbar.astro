@@ -10,37 +10,53 @@ const listNavbar: NavbarMenu[] = [
   },
   {
     icon: "/svg/header-code.svg",
-    href: "#",
+    href: "/code",
     name: "code",
   },
   {
     icon: "/svg/header-design.svg",
-    href: "#",
+    href: "/collenctions",
     name: "collenctions",
   },
   {
     icon: "/svg/header-about.svg",
-    href: "#",
+    href: "/about",
     name: "about",
   },
   {
     icon: "/svg/header-contact.svg",
-    href: "#",
+    href: "/contact",
     name: "contact",
   },
 ];
+
+/* const canonicalURL = new URL(Astro.url.pathname, Astro.site); */
+
+console.log(Astro.url.pathname);
 ---
 
-<header class="flex items-center justify-between h-[90px] max-w-[1440px] mx-auto">
+<header
+  class="flex items-center justify-between h-[90px] max-w-[1440px] mx-auto"
+>
   <p>LOGO</p>
   <nav>
     <li class="flex items-center gap-x-5">
       {
         listNavbar.map((menu) => (
           <ul>
-            <a href={menu.href} class="flex items-center gap-x-2 font-normal">
-                <Image src={menu.icon} width="16" height="16" alt={menu.name} />
-                {menu.name}
+            <a
+              href={menu.href}
+              class="flex items-center gap-x-2 font-normal"
+              class:list={[
+                "flex items-center gap-x-2 font-normal",
+                {
+                  "bg-green-200 rounded-xl px-2 py-1.5":
+                    Astro.url.pathname === `/${menu.name}`,
+                },
+              ]}
+            >
+              <Image src={menu.icon} width="16" height="16" alt={menu.name} />
+              {menu.name}
             </a>
           </ul>
         ))

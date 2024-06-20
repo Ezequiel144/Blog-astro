@@ -1,63 +1,71 @@
 ---
-import type { Cardpost } from "../../interface";
+import { tagCard } from "../../utils/listTagsCard";
 import Card from "./Card.astro";
 
+const allPosts = await Astro.glob("/src/pages/post/*.md");
 
+/* const listCard: Cardpost[] = [
+  {
+    image: "/image/pexels-pixabay-40185.jpg",
+    tag: {
+      icon: "/svg/tag-webSite.svg",
+      name: "website",
+    },
+    date: "29th feb 2024",
+    title: "About version 8",
+    description: `Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Voluptatibus, quisquam. Eos sit odit voluptatibus libero. Lorem
+              ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus,
+              quisquam. Eos sit odit voluptatibus libero.`,
+  },
+  {
+    image: "/image/pexels-pixabay-40185.jpg",
+    tag: {
+      icon: "/svg/tag-webSite.svg",
+      name: "website",
+    },
+    date: "29th feb 2024",
+    title: "About version 8",
+    description: `Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Voluptatibus, quisquam. Eos sit odit voluptatibus libero. Lorem
+              ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus,
+              quisquam. Eos sit odit voluptatibus libero.`,
+  },
+  {
+    image: "/image/pexels-pixabay-40185.jpg",
+    tag: {
+      icon: "/svg/tag-webSite.svg",
+      name: "website",
+    },
+    date: "29th feb 2024",
+    title: "About version 8",
+    description: `Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Voluptatibus, quisquam. Eos sit odit voluptatibus libero. Lorem
+              ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus,
+              quisquam. Eos sit odit voluptatibus libero.`,
+  },
+  {
+    image: "/image/pexels-pixabay-40185.jpg",
+    tag: {
+      icon: "/svg/tag-webSite.svg",
+      name: "website",
+    },
+    date: "29th feb 2024",
+    title: "About version 8",
+    description: `Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Voluptatibus, quisquam. Eos sit odit voluptatibus libero. Lorem
+              ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus,
+              quisquam. Eos sit odit voluptatibus libero.`,
+  },
+]; */
+const postFilterNews = allPosts
+  .sort(
+    (item1, item2) =>
+      new Date(item2.frontmatter.pubDate) - new Date(item1.frontmatter.pubDate)
+  )
+  .slice(0, 4);
 
-const listCard: Cardpost[] = [
-  {
-    image: "/image/pexels-pixabay-40185.jpg",
-    tag: {
-      icon: "/svg/tag-webSite.svg",
-      name: "website",
-    },
-    date: "29th feb 2024",
-    title: "About version 8",
-    description: `Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Voluptatibus, quisquam. Eos sit odit voluptatibus libero. Lorem
-              ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus,
-              quisquam. Eos sit odit voluptatibus libero.`,
-  },
-  {
-    image: "/image/pexels-pixabay-40185.jpg",
-    tag: {
-      icon: "/svg/tag-webSite.svg",
-      name: "website",
-    },
-    date: "29th feb 2024",
-    title: "About version 8",
-    description: `Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Voluptatibus, quisquam. Eos sit odit voluptatibus libero. Lorem
-              ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus,
-              quisquam. Eos sit odit voluptatibus libero.`,
-  },
-  {
-    image: "/image/pexels-pixabay-40185.jpg",
-    tag: {
-      icon: "/svg/tag-webSite.svg",
-      name: "website",
-    },
-    date: "29th feb 2024",
-    title: "About version 8",
-    description: `Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Voluptatibus, quisquam. Eos sit odit voluptatibus libero. Lorem
-              ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus,
-              quisquam. Eos sit odit voluptatibus libero.`,
-  },
-  {
-    image: "/image/pexels-pixabay-40185.jpg",
-    tag: {
-      icon: "/svg/tag-webSite.svg",
-      name: "website",
-    },
-    date: "29th feb 2024",
-    title: "About version 8",
-    description: `Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Voluptatibus, quisquam. Eos sit odit voluptatibus libero. Lorem
-              ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus,
-              quisquam. Eos sit odit voluptatibus libero.`,
-  },
-];
+/* console.log(postFilterNews) */
 ---
 
 <section class="max-w-[1440px] mx-auto py-12">
@@ -69,13 +77,16 @@ const listCard: Cardpost[] = [
   </article>
   <ul class="flex flex-wrap justify-between gap-y-11">
     {
-      listCard.map((data) => {
-        const { image, tag, date, title, description } = data;
+      postFilterNews.map((data) => {
+        const { image, tags, pubDate, title, description } = data.frontmatter;
+        let valueTag = tagCard.filter(
+          (item: { name: string }) => item.name === tags[0]
+        );
         return (
           <Card
-            image={image}
-            tag={tag}
-            date={date}
+            image={image.url}
+            tag={valueTag[0]}
+            date={pubDate}
             title={title}
             description={description}
           />

@@ -1,82 +1,13 @@
 ---
-import type { Cardpost } from "../../interface";
+import { tagCard } from "../../utils";
 import CardMini from "../CardMini.astro";
 
+const allPosts = await Astro.glob("/src/pages/post/*.md");
 
-const listDesignCards: Cardpost[]= [
-  {
-    tag: {
-      icon: "/svg/tag-quickTip.svg",
-      name: "quick tip",
-    },
-    title: "illustrator quick tip: aling to key object",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ab
-              repellat nihil officia iste, aspernatur natus odio veritatis
-              similique deleniti minus commodi eveniet consectetur maxime veniam
-              magnam molestias facere voluptatem.`,
-    image: ""
-  },
-  {
-    tag: {
-      icon: "/svg/tag-quickTip.svg",
-      name: "quick tip",
-    },
-    title: "illustrator quick tip: aling to key object",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ab
-              repellat nihil officia iste, aspernatur natus odio veritatis
-              similique deleniti minus commodi eveniet consectetur maxime veniam
-              magnam molestias facere voluptatem.`,
-    image: ""
-  },
-  {
-    tag: {
-      icon: "/svg/tag-quickTip.svg",
-      name: "quick tip",
-    },
-    title: "illustrator quick tip: aling to key object",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ab
-              repellat nihil officia iste, aspernatur natus odio veritatis
-              similique deleniti minus commodi eveniet consectetur maxime veniam
-              magnam molestias facere voluptatem.`,
-    image: ""
-  },
-  {
-    tag: {
-      icon: "/svg/tag-quickTip.svg",
-      name: "quick tip",
-    },
-    title: "illustrator quick tip: aling to key object",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ab
-              repellat nihil officia iste, aspernatur natus odio veritatis
-              similique deleniti minus commodi eveniet consectetur maxime veniam
-              magnam molestias facere voluptatem.`,
-    image: ""
-  },
-  {
-    tag: {
-      icon: "/svg/tag-quickTip.svg",
-      name: "quick tip",
-    },
-    title: "illustrator quick tip: aling to key object",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ab
-              repellat nihil officia iste, aspernatur natus odio veritatis
-              similique deleniti minus commodi eveniet consectetur maxime veniam
-              magnam molestias facere voluptatem.`,
-    image: ""
-  },
-  {
-    tag: {
-      icon: "/svg/tag-quickTip.svg",
-      name: "quick tip",
-    },
-    title: "illustrator quick tip: aling to key object",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ab
-              repellat nihil officia iste, aspernatur natus odio veritatis
-              similique deleniti minus commodi eveniet consectetur maxime veniam
-              magnam molestias facere voluptatem.`,
-    image: ""
-  },
-];
+/*quiero que me de todos los posteos que tengan dentro de su listado la palabra "design"*/
+const filterTagsdesign = allPosts
+  .filter((post) => post.frontmatter.tags.includes("design"))
+  .slice(0, 6);
 ---
 
 <section class="mx-auto max-w-[1440px] py-12">
@@ -90,10 +21,13 @@ const listDesignCards: Cardpost[]= [
   </article>
   <ul class="flex flex-wrap justify-between gap-10">
     {
-      listDesignCards.map((card) => {
-        const { tag, title, description } = card;
+      filterTagsdesign.map((card) => {
+        const { tags, title, description } = card.frontmatter;
+        let valueTag = tagCard.filter(
+          (item: { name: string }) => item.name === tags[0]
+        );
         return (
-          <CardMini tag={tag} title={title} description={description}/>
+          <CardMini tag={valueTag[0]} title={title} description={description} />
         );
       })
     }

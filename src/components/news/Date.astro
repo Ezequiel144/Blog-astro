@@ -2,6 +2,7 @@
 import Image from "astro/components/Image.astro";
 
 const {date} = Astro.props
+/* console.log(date.slice(0,10).split("-").reverse().join("/")); */
 ---
 
 <div class="flex items-center gap-x-2">
@@ -13,5 +14,5 @@ const {date} = Astro.props
         alt={"web site"}
       />
     </div>
-    <p class="text-base font-medium">{date}</p>
+    <p class="text-base font-medium">{date.slice(0,10).split("-").reverse().join("/")}</p>
   </div>
