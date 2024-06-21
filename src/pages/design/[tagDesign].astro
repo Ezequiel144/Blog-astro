@@ -1,0 +1,82 @@
+---
+import { isTemplateExpression } from "typescript";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const allPosts = await Astro.glob("/src/pages/post/*.md");
+  /* const allUnicTags = [
+    ...new Set(allPosts.map((post) => post.frontmatter.tags.flat())),
+  ]; */
+
+  let allUnicTags: string[] = [];
+  allPosts.forEach((item) =>
+    item.frontmatter.tags.map((subItem: string) => {
+      if (allUnicTags.includes(subItem)) {
+      } else {
+        /* listTagDesign.push(subItem); */
+        allUnicTags = [...allUnicTags, subItem];
+      }
+    })
+  );
+
+  return allUnicTags.map((item) => {
+    const filterPosts: any = allPosts.filter((subItem) =>
+      subItem.frontmatter.tags.includes(item)
+    );
+    return {
+      params: { urlPage: item },
+      prop: { posts: filterPosts },
+    };
+  });
+
+  /* return [
+    {
+      params: { tagDesign: "design" },
+      props: { name: "design" },
+    },
+    {
+      params: { tagDesign: "visual-design" },
+      props: { name: "visual design" },
+    },
+    {
+      params: { tagDesign: "colour" },
+      props: { name: "colour" },
+    },
+    {
+      params: { tagDesign: "typography" },
+      props: { name: "typography" },
+    },
+  ]; */
+}
+const allPosts = await Astro.glob("/src/pages/post/*.md");
+
+let allUnicTags: string[] = [];
+allPosts.forEach((item) =>
+  item.frontmatter.tags.map((subItem: string) => {
+    if (allUnicTags.includes(subItem)) {
+    } else {
+      allUnicTags = [...allUnicTags, subItem];
+    }
+  })
+);
+
+/* console.log(allUnicTags.map((item) => {
+  const filterPosts = allPosts.filter((subItem) =>
+    {
+        console.log(subItem.frontmatter.tags.includes(item))
+        return subItem.frontmatter.tags.includes(item)
+    }
+  );
+  return filterPosts;
+})); */
+
+/* console.log(allUnicTags); */
+
+const { tagDesign } = Astro.params;
+console.log(tagDesign)
+const { name } = Astro.props;
+---
+
+<Layout title={name}>
+  <h1>{name}</h1>
+</Layout>

@@ -1,37 +1,44 @@
 ---
 import Image from "astro/components/Image.astro";
-import Layout from "../layouts/Layout.astro";
-import Tag from "../components/news/Tag.astro";
-import CardFilter from "../components/CardFilter.astro";
+import Layout from "../../layouts/Layout.astro";
+import Tag from "../../components/news/Tag.astro";
+import CardFilter from "../../components/CardFilter.astro";
+import { tagCard } from "../../utils";
 
 const listMenuDesign = [
   {
-    icon: "design",
-    name: "ux design",
+    href: "/design/quick-tip",
+    icon: "/svg/tag-quickTip.svg",
+    name: "quick tip",
   },
   {
-    icon: "design",
-    name: "ux design",
+    href: "/design/typography",
+    icon: "/svg/tag-typography.svg",
+    name: "typography",
   },
   {
-    icon: "design",
-    name: "ux design",
+    href: "/design/colour",
+    icon: "/svg/tag-colour.svg",
+    name: "colour",
   },
   {
-    icon: "design",
-    name: "ux design",
+    href: "/design/design",
+    icon: "/svg/tag-design.svg",
+    name: "design",
   },
   {
-    icon: "design",
-    name: "ux design",
+    href: "/design/resources",
+    icon: "/svg/tag-resources.svg",
+    name: "resources",
   },
   {
-    icon: "design",
-    name: "ux design",
+    href: "/design/visual-design",
+    icon: "/svg/tag-visualDesign.svg",
+    name: "visual design",
   },
 ];
 
-const listCardDesign = [
+/* const listCardDesign = [
   {
     image: "/image/pexels-tranmautritam-326502.jpg",
     tag: {
@@ -120,7 +127,13 @@ const listCardDesign = [
             ipsam eos impedit quam minus optio officiis voluptas cupiditate.
             Tempora dolore illo aspernatur tempore eveniet quia.`,
   },
-];
+]; */
+
+const allPosts = await Astro.glob("/src/pages/post/*.md");
+const filterDesign = allPosts.filter((post) =>
+  post.frontmatter.tags.includes("design")
+);
+/* .slice(0, 6) */
 ---
 
 <Layout title="blog-design">
@@ -139,11 +152,22 @@ const listCardDesign = [
         <ul class="w-fit flex flex-wrap justify-end gap-8">
           {
             listMenuDesign.map((menu) => (
-              <li class="w-[250px]">
-                {menu.icon}
-                <p class="py-3 border-b border-gray-300 text-lg font-semibold">
-                  {menu.name}
-                </p>
+              <li class="w-[250px] ">
+                <a
+                  href={menu.href}
+                  class="flex gap-x-2 items-center py-3 border-b border-gray-300"
+                >
+                  <div class=" p-2 bg-white rounded-xl shadow-md">
+                    <Image
+                      src={menu.icon}
+                      width={24}
+                      height={24}
+                      alt={menu.name}
+                    />
+                  </div>
+
+                  <p class=" text-lg font-semibold">{menu.name}</p>
+                </a>
               </li>
             ))
           }
@@ -152,14 +176,17 @@ const listCardDesign = [
     </section>
     <ul class="max-w-[1440px] mx-auto flex flex-wrap justify-between gap-y-8">
       {
-        listCardDesign.map((item) => {
-          const { image, tag, title, description } = item;
+        filterDesign.map((item) => {
+          const { image, tags, title, description } = item.frontmatter;
+          let valueTag = tagCard.filter(
+            (item: { name: string }) => item.name === tags[0]
+          );
           return (
             <CardFilter
-              image={image}
+              image={image.url}
               title={title}
               description={description}
-              tag={tag}
+              tag={valueTag[0]}
             />
           );
         })
