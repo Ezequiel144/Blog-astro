@@ -1,0 +1,103 @@
+---
+import Image from "astro/components/Image.astro";
+import Layout from "../../layouts/Layout.astro";
+import { tagCard } from "../../utils";
+import CardFilter from "../../components/CardFilter.astro";
+
+const listMenuCode = [
+  {
+    href: "/code/animation",
+    icon: "/svg/tag-animation.svg",
+    name: "animation",
+  },
+  {
+    href: "/code/css",
+    icon: "/svg/tag-css.svg",
+    name: "css",
+  },
+  {
+    href: "/code/patterns",
+    icon: "/svg/tag-patterns.svg",
+    name: "patterns",
+  },
+  {
+    href: "/code/javascript",
+    icon: "/svg/tag-js.svg",
+    name: "javascript",
+  },
+  {
+    href: "/code/typescript",
+    icon: "/svg/tag-angular.svg",
+    name: "angular",
+  },
+  {
+    href: "/code/react",
+    icon: "/svg/tag-react.svg",
+    name: "react",
+  },
+];
+
+const allPosts = await Astro.glob("/src/pages/post/*.md");
+const filterCode = allPosts.filter((post) =>
+  post.frontmatter.tags.includes("code")
+);
+---
+
+<Layout title="code">
+  <main class="w-full min-h-screen max-w-[1440px] mx-auto">
+    <section
+      class="max-w-[1440px] h-[400px] mx-auto py-12 flex items-start justify-between gap-8"
+    >
+      <article class="w-[35%] flex flex-col gap-y-3">
+        <h1 class="text-6xl font-bold">Code</h1>
+        <p class="text-base">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus
+          optio, beatae dolor ab aliquam vero debitis consequatur cum.
+        </p>
+      </article>
+      <article class="w-fit h-full">
+        <ul class="w-fit flex flex-wrap justify-end gap-8">
+          {
+            listMenuCode.map((menu) => (
+              <li class="w-[250px] ">
+                <a
+                  href={menu.href}
+                  class="flex gap-x-2 items-center py-3 border-b border-gray-300"
+                >
+                  <div class=" p-2 bg-white rounded-xl shadow-md">
+                    <Image
+                      src={menu.icon}
+                      width={24}
+                      height={24}
+                      alt={menu.name}
+                    />
+                  </div>
+
+                  <p class=" text-lg font-semibold">{menu.name}</p>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+    </section>
+    <ul class="max-w-[1440px] mx-auto flex flex-wrap justify-between gap-y-8">
+      {
+        filterCode.map((item) => {
+          const { image, tags, title, description } = item.frontmatter;
+          let valueTag = tagCard.filter(
+            (item: { name: string }) => item.name === tags[0]
+          );
+          return (
+            <CardFilter
+              image={image.url}
+              title={title}
+              description={description}
+              tag={valueTag[0]}
+            />
+          );
+        })
+      }
+    </ul>
+  </main>
+</Layout>
