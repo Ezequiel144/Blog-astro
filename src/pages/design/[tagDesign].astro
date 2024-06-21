@@ -1,6 +1,8 @@
 ---
-import { isTemplateExpression } from "typescript";
+import Image from "astro/components/Image.astro";
 import Layout from "../../layouts/Layout.astro";
+import CardFilter from "../../components/CardFilter.astro";
+import { tagCard } from "../../utils";
 
 export async function getStaticPaths() {
   const allPosts = await Astro.glob("/src/pages/post/*.md");
@@ -20,12 +22,12 @@ export async function getStaticPaths() {
   );
 
   return allUnicTags.map((item) => {
-    const filterPosts: any = allPosts.filter((subItem) =>
-      subItem.frontmatter.tags.includes(item)
-    );
+    const filterPosts: any = allPosts
+      .filter((subItem) => subItem.frontmatter.tags.includes(item))
+      .flat();
     return {
-      params: { urlPage: item },
-      prop: { posts: filterPosts },
+      params: { tagDesign: item },
+      props: { posts: filterPosts },
     };
   });
 
@@ -48,7 +50,7 @@ export async function getStaticPaths() {
     },
   ]; */
 }
-const allPosts = await Astro.glob("/src/pages/post/*.md");
+/* const allPosts = await Astro.glob("/src/pages/post/*.md");
 
 let allUnicTags: string[] = [];
 allPosts.forEach((item) =>
@@ -60,23 +62,38 @@ allPosts.forEach((item) =>
   })
 );
 
-/* console.log(allUnicTags.map((item) => {
-  const filterPosts = allPosts.filter((subItem) =>
-    {
-        console.log(subItem.frontmatter.tags.includes(item))
-        return subItem.frontmatter.tags.includes(item)
-    }
-  );
+const list = allUnicTags.map((item) => {
+  const filterPosts = allPosts.filter((subItem) => {
+    //console.log(subItem.frontmatter.tags.includes(item));
+    return subItem.frontmatter.tags.includes(item);
+  });
   return filterPosts;
-})); */
+});
 
-/* console.log(allUnicTags); */
+list.flat().forEach(item => console.log(item.frontmatter.title)) */
 
 const { tagDesign } = Astro.params;
-console.log(tagDesign)
-const { name } = Astro.props;
+const { posts } = Astro.props;
 ---
 
-<Layout title={name}>
-  <h1>{name}</h1>
+<Layout title={tagDesign}>
+  <!-- <h1 class="">{tagDesign}</h1> -->
+  <ul class="max-w-[1440px] mx-auto flex flex-wrap justify-between gap-y-8">
+    {
+      posts.map((post: any) => {
+        const { frontmatter } = post;
+        let valueTag = tagCard.filter(
+          (item: { name: string }) => item.name === frontmatter.tags[0]
+        );
+        return (
+          <CardFilter
+            image={frontmatter.image.url}
+            title={frontmatter.title}
+            description={frontmatter.description}
+            tag={valueTag[0]}
+          />
+        );
+      })
+    }
+  </ul>
 </Layout>
