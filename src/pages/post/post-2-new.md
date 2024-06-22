@@ -10,7 +10,8 @@ author: "Juan carlos - web developer"
 image:
   url: "/image/pexels-pixabay-40185.jpg"
   alt: "web developer - website"
-tags: ["typography", "developer"]
+tags: ["patterns", "angular"]
+category: "code"
 slug: "/post/post-1-new"
 ---
 

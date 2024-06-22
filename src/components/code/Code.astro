@@ -1,5 +1,6 @@
 ---
 import type { Cardpost } from "../../interface";
+import { tagCard } from "../../utils";
 import CardMini from "../CardMini.astro";
 
 
@@ -77,6 +78,12 @@ const listDesignCards: Cardpost[]= [
     image: ""
   },
 ];
+
+const allPosts = await Astro.glob("/src/pages/post/*.md");
+
+const filterTagsCode = allPosts
+  .filter((post) => post.frontmatter.category === "code")
+  .slice(0, 6);
 ---
 
 <section class="mx-auto max-w-[1440px] py-12">
@@ -90,9 +97,12 @@ const listDesignCards: Cardpost[]= [
   </article>
   <ul class="flex flex-wrap justify-between gap-10">
     {
-      listDesignCards.map((card) => {
-        const { tag, title, description } = card;
-        return <CardMini tag={tag} title={title} description={description} />;
+      filterTagsCode.map((card) => {
+        const { tags, title, description } = card.frontmatter;
+        let valueTag = tagCard.filter(
+          (item: { name: string }) => item.name === tags[0]
+        );
+        return <CardMini tag={valueTag[0]} title={title} description={description} />;
       })
     }
   </ul>

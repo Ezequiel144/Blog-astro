@@ -6,7 +6,7 @@ const allPosts = await Astro.glob("/src/pages/post/*.md");
 
 /*quiero que me de todos los posteos que tengan dentro de su listado la palabra "design"*/
 const filterTagsdesign = allPosts
-  .filter((post) => post.frontmatter.tags.includes("design"))
+  .filter((post) => post.frontmatter.category === "design")
   .slice(0, 6);
 ---
 

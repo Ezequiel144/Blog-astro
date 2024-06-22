@@ -11,6 +11,7 @@ image:
   url: "/image/pexels-pixabay-40185.jpg"
   alt: "web developer - website"
 tags: ["quick tip","design", "developer"]
+category: "design"
 slug: "/post/post-1-new"
 ---
 
