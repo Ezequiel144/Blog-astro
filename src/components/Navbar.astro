@@ -32,13 +32,17 @@ const listNavbar: NavbarMenu[] = [
 
 /* const canonicalURL = new URL(Astro.url.pathname, Astro.site); */
 
-console.log(Astro.url.pathname);
+/* console.log(Astro.url.pathname); */
 ---
 
 <header
   class="flex items-center justify-between h-[90px] max-w-[1440px] mx-auto"
 >
-  <p>LOGO</p>
+  <a href="/">
+    <p class="text-3xl font-normal tracking-wide">
+      Blogeando<span class="font-bold bg-green-950 text-white py-1 px-2">ando</span>
+    </p>
+  </a>
   <nav>
     <li class="flex items-center gap-x-5">
       {
