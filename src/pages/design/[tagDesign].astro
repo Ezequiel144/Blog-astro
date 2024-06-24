@@ -1,6 +1,7 @@
 ---
 import CardFilter from "../../components/CardFilter.astro";
 import Layout from "../../layouts/Layout.astro";
+import LayouteFilter from "../../layouts/LayouteFilter.astro";
 import { tagCard } from "../../utils";
 
 export async function getStaticPaths() {
@@ -12,14 +13,17 @@ export async function getStaticPaths() {
       if (allUnicTags.includes(subItem)) {
       } else {
         /* listTagDesign.push(subItem); */
-        allUnicTags = [...allUnicTags, subItem];
+        allUnicTags = [...allUnicTags, subItem/* .replace(/ /g, "-") */];
       }
     })
   );
 
   return allUnicTags.map((item) => {
     const filterPosts: any = allPosts
-      .filter((subItem) => subItem.frontmatter.tags.includes(item))
+      .filter((subItem) => {
+        /* subItem.frontmatter.tags = subItem.frontmatter.tags.map((subItem: string) => subItem.replace(/ /g, "-")) */
+        return subItem.frontmatter.tags.includes(item);
+      })
       .flat();
     return {
       params: { tagDesign: item },
@@ -51,9 +55,9 @@ export async function getStaticPaths() {
 let allUnicTags: string[] = [];
 allPosts.forEach((item) =>
   item.frontmatter.tags.map((subItem: string) => {
-    if (allUnicTags.includes(subItem)) {
+    if (allUnicTags.includes(subItem.replace(/ /g, "-"))) {
     } else {
-      allUnicTags = [...allUnicTags, subItem];
+      allUnicTags = [...allUnicTags, subItem.replace(/ /g, "-")];
     }
   })
 );
@@ -61,18 +65,23 @@ allPosts.forEach((item) =>
 const list = allUnicTags.map((item) => {
   const filterPosts = allPosts.filter((subItem) => {
     //console.log(subItem.frontmatter.tags.includes(item));
+    subItem.frontmatter.tags = subItem.frontmatter.tags.map((subItem: string) => subItem.replace(/ /g, "-"));
+    console.log(subItem.frontmatter.tags)
+    console.log(item)
     return subItem.frontmatter.tags.includes(item);
   });
   return filterPosts;
 });
 
-list.flat().forEach(item => console.log(item.frontmatter.title)) */
+list.flat().forEach((item) => console.log(item.frontmatter.tags)) */
+/* console.log(list); */
 
 const { tagDesign } = Astro.params;
 const { posts } = Astro.props;
+
 ---
 
-<Layout title={tagDesign}>
+<LayouteFilter title={tagDesign}>
   <!-- <h1 class="">{tagDesign}</h1> -->
   <ul class="max-w-[1440px] mx-auto flex flex-wrap justify-between gap-y-8">
     {
@@ -92,4 +101,4 @@ const { posts } = Astro.props;
       })
     }
   </ul>
-</Layout>
+</LayouteFilter>

@@ -1,6 +1,6 @@
 ---
 import CardFilter from "../../components/CardFilter.astro";
-import Layout from "../../layouts/Layout.astro";
+import LayouteFilterCode from "../../layouts/LayouteFilterCode.astro";
 import { tagCard } from "../../utils";
 export async function getStaticPaths() {
   const allPosts = await Astro.glob("/src/pages/post/*.md");
@@ -48,7 +48,7 @@ const { code } = Astro.params;
 const { posts } = Astro.props;
 ---
 
-<Layout title={code}>
+<LayouteFilterCode title={code}>
   <main class="max-w-[1440px] mx-auto">
     <ul class="max-w-[1440px] mx-auto flex flex-wrap justify-between gap-y-8">
       {
@@ -69,4 +69,4 @@ const { posts } = Astro.props;
       }
     </ul>
   </main>
-</Layout>
+</LayouteFilterCode>

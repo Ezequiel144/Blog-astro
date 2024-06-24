@@ -1,0 +1,48 @@
+---
+import Image from "astro/components/Image.astro";
+import Layout from "./Layout.astro";
+import { listMenuDesign } from "../utils/listMenuDesign";
+
+---
+
+<Layout title="Filter design">
+  <main>
+    <section
+      class="max-w-[1440px] h-[400px] mx-auto py-12 flex items-start justify-between gap-8"
+    >
+      <article class="w-[35%] flex flex-col gap-y-3">
+        <h1 class="text-6xl font-bold">design</h1>
+        <p class="text-base">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus
+          optio, beatae dolor ab aliquam vero debitis consequatur cum.
+        </p>
+      </article>
+      <article class="w-fit h-full">
+        <ul class="w-fit flex flex-wrap justify-end gap-8">
+          {
+            listMenuDesign.map((menu) => (
+              <li class="w-[250px] ">
+                <a
+                  href={menu.href}
+                  class="flex gap-x-2 items-center py-3 border-b border-gray-300"
+                >
+                  <div class=" p-2 bg-white rounded-xl shadow-md">
+                    <Image
+                      src={menu.icon}
+                      width={24}
+                      height={24}
+                      alt={menu.name}
+                    />
+                  </div>
+
+                  <p class=" text-lg font-semibold">{menu.name}</p>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+    </section>
+    <slot />
+  </main>
+</Layout>

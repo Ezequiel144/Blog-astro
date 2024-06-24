@@ -1,179 +1,18 @@
 ---
-import Image from "astro/components/Image.astro";
-import Layout from "../../layouts/Layout.astro";
-import Tag from "../../components/news/Tag.astro";
 import CardFilter from "../../components/CardFilter.astro";
+import LayouteFilter from "../../layouts/LayouteFilter.astro";
 import { tagCard } from "../../utils";
-
-const listMenuDesign = [
-  {
-    href: "/design/quick-tip",
-    icon: "/svg/tag-quickTip.svg",
-    name: "quick tip",
-  },
-  {
-    href: "/design/typography",
-    icon: "/svg/tag-typography.svg",
-    name: "typography",
-  },
-  {
-    href: "/design/colour",
-    icon: "/svg/tag-colour.svg",
-    name: "colour",
-  },
-  {
-    href: "/design/design",
-    icon: "/svg/tag-design.svg",
-    name: "design",
-  },
-  {
-    href: "/design/resources",
-    icon: "/svg/tag-resources.svg",
-    name: "resources",
-  },
-  {
-    href: "/design/visual-design",
-    icon: "/svg/tag-visualDesign.svg",
-    name: "visual design",
-  },
-];
-
-/* const listCardDesign = [
-  {
-    image: "/image/pexels-tranmautritam-326502.jpg",
-    tag: {
-      icon: "/svg/tag-webSite.svg",
-      name: "website",
-    },
-    title: "the best ink trap typefaces for website",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-            ipsam eos impedit quam minus optio officiis voluptas cupiditate.
-            Tempora dolore illo aspernatur tempore eveniet quia.`,
-  },
-  {
-    image: "/image/pexels-tranmautritam-326502.jpg",
-    tag: {
-      icon: "/svg/tag-webSite.svg",
-      name: "website",
-    },
-    title: "the best ink trap typefaces for website",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-            ipsam eos impedit quam minus optio officiis voluptas cupiditate.
-            Tempora dolore illo aspernatur tempore eveniet quia.`,
-  },
-  {
-    image: "/image/pexels-tranmautritam-326502.jpg",
-    tag: {
-      icon: "/svg/tag-webSite.svg",
-      name: "website",
-    },
-    title: "the best ink trap typefaces for website",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-            ipsam eos impedit quam minus optio officiis voluptas cupiditate.
-            Tempora dolore illo aspernatur tempore eveniet quia.`,
-  },
-  {
-    image: "/image/pexels-tranmautritam-326502.jpg",
-    tag: {
-      icon: "/svg/tag-webSite.svg",
-      name: "website",
-    },
-    title: "the best ink trap typefaces for website",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-            ipsam eos impedit quam minus optio officiis voluptas cupiditate.
-            Tempora dolore illo aspernatur tempore eveniet quia.`,
-  },
-  {
-    image: "/image/pexels-tranmautritam-326502.jpg",
-    tag: {
-      icon: "/svg/tag-webSite.svg",
-      name: "website",
-    },
-    title: "the best ink trap typefaces for website",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-            ipsam eos impedit quam minus optio officiis voluptas cupiditate.
-            Tempora dolore illo aspernatur tempore eveniet quia.`,
-  },
-  {
-    image: "/image/pexels-tranmautritam-326502.jpg",
-    tag: {
-      icon: "/svg/tag-webSite.svg",
-      name: "website",
-    },
-    title: "the best ink trap typefaces for website",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-            ipsam eos impedit quam minus optio officiis voluptas cupiditate.
-            Tempora dolore illo aspernatur tempore eveniet quia.`,
-  },
-  {
-    image: "/image/pexels-tranmautritam-326502.jpg",
-    tag: {
-      icon: "/svg/tag-webSite.svg",
-      name: "website",
-    },
-    title: "the best ink trap typefaces for website",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-            ipsam eos impedit quam minus optio officiis voluptas cupiditate.
-            Tempora dolore illo aspernatur tempore eveniet quia.`,
-  },
-  {
-    image: "/image/pexels-tranmautritam-326502.jpg",
-    tag: {
-      icon: "/svg/tag-webSite.svg",
-      name: "website",
-    },
-    title: "the best ink trap typefaces for website",
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-            ipsam eos impedit quam minus optio officiis voluptas cupiditate.
-            Tempora dolore illo aspernatur tempore eveniet quia.`,
-  },
-]; */
 
 const allPosts = await Astro.glob("/src/pages/post/*.md");
 const filterDesign = allPosts.filter((post) =>
-  post.frontmatter.tags.includes("design")
+  post.frontmatter.category === "design"
 );
 /* .slice(0, 6) */
+console.log(filterDesign)
 ---
 
-<Layout title="blog-design">
+<LayouteFilter title="blog-design">
   <main class="w-full min-h-screen">
-    <section
-      class="max-w-[1440px] h-[400px] mx-auto py-12 flex items-start justify-between gap-8"
-    >
-      <article class="w-[35%] flex flex-col gap-y-3">
-        <h1 class="text-6xl font-bold">design</h1>
-        <p class="text-base">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus
-          optio, beatae dolor ab aliquam vero debitis consequatur cum.
-        </p>
-      </article>
-      <article class="w-fit h-full">
-        <ul class="w-fit flex flex-wrap justify-end gap-8">
-          {
-            listMenuDesign.map((menu) => (
-              <li class="w-[250px] ">
-                <a
-                  href={menu.href}
-                  class="flex gap-x-2 items-center py-3 border-b border-gray-300"
-                >
-                  <div class=" p-2 bg-white rounded-xl shadow-md">
-                    <Image
-                      src={menu.icon}
-                      width={24}
-                      height={24}
-                      alt={menu.name}
-                    />
-                  </div>
-
-                  <p class=" text-lg font-semibold">{menu.name}</p>
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </article>
-    </section>
     <ul class="max-w-[1440px] mx-auto flex flex-wrap justify-between gap-y-8">
       {
         filterDesign.map((item) => {
@@ -193,4 +32,4 @@ const filterDesign = allPosts.filter((post) =>
       }
     </ul>
   </main>
-</Layout>
+</LayouteFilter>

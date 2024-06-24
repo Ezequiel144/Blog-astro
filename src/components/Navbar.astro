@@ -32,7 +32,7 @@ const listNavbar: NavbarMenu[] = [
 
 /* const canonicalURL = new URL(Astro.url.pathname, Astro.site); */
 
-/* console.log(Astro.url.pathname); */
+console.log(Astro.url.pathname);
 ---
 
 <header
@@ -57,6 +57,10 @@ const listNavbar: NavbarMenu[] = [
                   "bg-green-200 rounded-xl px-2 py-1.5":
                     Astro.url.pathname === `/${menu.name}`,
                 },
+                /* {
+                  "bg-green-200 rounded-xl px-2 py-1.5":
+                    Astro.url.pathname === `/${menu.name}/`,
+                }, */
               ]}
             >
               <Image src={menu.icon} width="16" height="16" alt={menu.name} />

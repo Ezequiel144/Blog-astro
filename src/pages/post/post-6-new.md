@@ -10,7 +10,7 @@ author: "Juan carlos - web developer"
 image:
   url: "/image/pexels-pixabay-40185.jpg"
   alt: "web developer - website"
-tags: ["quick tip","design", "developer"]
+tags: ["design", "developer"]
 category: "design"
 slug: "/post/post-1-new"
 ---

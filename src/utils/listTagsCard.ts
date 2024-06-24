@@ -1,7 +1,7 @@
 export const tagCard: { icon: string; name: string }[] = [
   {
     icon:"/svg/tag-quickTip.svg",
-    name: "quick tip"
+    name: "quickTip"
   },
   {
     icon: "/svg/tag-webSite.svg",
@@ -53,10 +53,10 @@ export const tagCard: { icon: string; name: string }[] = [
   },
   {
     icon: "/svg/tag-visualDesign.svg",
-    name: "visual design",
+    name: "visualDesign",
   },
   {
     icon: "/svg/tag-resources.svg",
-    name: "resources  ",
+    name: "resources",
   },
 ];
