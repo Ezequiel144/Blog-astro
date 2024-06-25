@@ -12,7 +12,7 @@ image:
   alt: "web developer - website"
 tags: ["css", "angular"]
 category: "code"
-slug: "/post/post-1-new"
+slug: "/post/post-3-new"
 ---
 
 # about version 8

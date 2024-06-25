@@ -12,7 +12,7 @@ image:
   alt: "web developer - website"
 tags: ["patterns", "angular"]
 category: "code"
-slug: "/post/post-1-new"
+slug: "/post/post-2-new"
 ---
 
 # about version 8
