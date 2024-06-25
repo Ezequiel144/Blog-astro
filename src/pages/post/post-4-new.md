@@ -12,7 +12,7 @@ image:
   alt: "web developer - website"
 tags: ["quickTip", "design"]
 category: "design"
-slug: "/post/post-1-new"
+slug: "/post/post-4-new"
 ---
 
 # about version 8
