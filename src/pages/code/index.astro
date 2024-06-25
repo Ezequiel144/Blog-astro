@@ -1,9 +1,7 @@
 ---
-import Image from "astro/components/Image.astro";
-import Layout from "../../layouts/Layout.astro";
-import { tagCard } from "../../utils";
 import CardFilter from "../../components/CardFilter.astro";
 import LayouteFilterCode from "../../layouts/LayouteFilterCode.astro";
+import { tagCard } from "../../utils";
 
 const listMenuCode = [
   {
@@ -50,19 +48,20 @@ console.log(list.length) */
 
 <LayouteFilterCode title="code">
   <main class="w-full min-h-screen max-w-[1440px] mx-auto">
-    <ul class="max-w-[1440px] mx-auto flex flex-wrap justify-between gap-y-8">
+    <ul class="max-w-[1440px] mx-auto grid grid-cols-gridPosts gap-y-8">
       {
         filterCode.map((item) => {
           const { image, tags, title, description } = item.frontmatter;
           let valueTag = tagCard.filter(
-            (item: { name: string }) => item.name === tags[0]
+            (item: { name: string }) => /* item.name === tags[0] */tags.includes(item.name)
           );
+          /* console.log(valueTag) */
           return (
             <CardFilter
               image={image.url}
               title={title}
               description={description}
-              tag={valueTag[0]}
+              tag={valueTag}
             />
           );
         })

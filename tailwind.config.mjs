@@ -12,6 +12,9 @@ export default {
 				"back-beige":{
 					300: "#DBCDC6"
 				}
+			},
+			gridTemplateColumns:{
+				"gridPosts": "repeat(auto-fill, minmax(300px, 1fr))" 
 			}
 		},
 	},

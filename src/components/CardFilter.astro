@@ -2,7 +2,8 @@
 import Image from "astro/components/Image.astro";
 import Tag from "../components/news/Tag.astro";
 
-const { image, title, description,tag } = Astro.props;
+const { image, title, description, tag } = Astro.props;
+/* console.log(tag); */
 ---
 
 <li class="w-[300px] h-[500px] bg-white rounded-xl shadow-lg">
@@ -15,20 +16,12 @@ const { image, title, description,tag } = Astro.props;
     alt={"image-design-card-title"}
   />
   <div class="w-full h-[300px] rounded-b-lg px-4 py-3 flex flex-col gap-y-4">
-    <!-- <div class="flex items-center gap-x-2">
-      <div class="p-1.5 rounded-lg shadow-md">
-        <Image
-          src={"/svg/tag-webSite.svg"}
-          width={24}
-          height={24}
-          alt={"web site"}
-        />
-      </div>
-      <h5 class="text-base font-medium">{"webSite"}</h5>
-    </div> -->
-    <Tag tag={tag} />
+    <section class="flex items-center gap-x-2 w-full overflow-auto">
+      {tag.map((item: any) => <Tag tag={item} />)}
+    </section>
+    <!-- <Tag tag={tag} /> -->
     <h2 class="text-3xl font-bold">{title}</h2>
-    <p class="text-sm font-normal">
+    <p class="text-sm font-normal text-ellipsis w-full">
       {description}
     </p>
   </div>

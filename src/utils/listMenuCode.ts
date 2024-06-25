@@ -22,7 +22,7 @@ export const listMenuCode: MenuFilter[]= [
     name: "javascript",
   },
   {
-    href: "/code/typescript",
+    href: "/code/angular",
     icon: "/svg/tag-angular.svg",
     name: "angular",
   },
