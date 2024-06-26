@@ -3,7 +3,6 @@ import CardFilter from "../../components/CardFilter.astro";
 import LayouteFilterCode from "../../layouts/LayouteFilterCode.astro";
 import { tagCard } from "../../utils";
 
-
 const allPosts = await Astro.glob("/src/pages/post/*.md");
 const filterCode = allPosts.filter((post) =>
   post.frontmatter.category === "code"
