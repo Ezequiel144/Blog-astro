@@ -2,8 +2,8 @@
 import { e as createComponent, r as renderTemplate, i as renderComponent, h as createAstro, m as maybeRenderHead } from '../astro_BptdOWPo.mjs';
 import 'kleur/colors';
 import 'html-escaper';
-import { t as tagCard, $ as $$CardFilter, a as $$LayouteFilterCode, b as $$Tag } from './_code__OPD-fEfu.mjs';
-import { $ as $$LayouteFilter } from './_tagDesign__-Xv0Gjag.mjs';
+import { t as tagCard, $ as $$CardFilter, a as $$LayouteFilterCode, b as $$Tag } from './_code__DMQpc5yV.mjs';
+import { $ as $$LayouteFilter } from './_tagDesign__Dc0yEloK.mjs';
 import { $ as $$Image, a as $$Layout } from './404_mG3vindj.mjs';
 
 const $$Astro$7 = createAstro();
@@ -128,6 +128,7 @@ const $$Card = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
   Astro2.self = $$Card;
   const { image, tag, date, title, description } = Astro2.props;
+  console.log(tag);
   return renderTemplate`${maybeRenderHead()}<li class="w-[48%] h-full rounded-lg shadow-lg">  ${renderComponent($$result, "Image", $$Image, { "src": image, "class": "rounded-t-lg object-cover h-[60%] w-full", "width": 620, "height": 300, "alt": "image blog" })}  <section class="flex flex-col justify-between bg-white h-[40%] rounded-b-lg gap-y-5 p-10">  <article class="flex items-center gap-x-5"> ${renderComponent($$result, "Tag", $$Tag, { "tag": tag })} ${renderComponent($$result, "Date", $$Date, { "date": date })} </article> <h3 class="text-5xl font-bold">${title}</h3> <p class="text-base font-regular">${description}</p> </section> </li>`;
 }, "C:/Users/Ezequiel/Documents/Desarrollo Web/Astro/Blog/blog-main/src/components/news/Card.astro", void 0);
 
@@ -139,6 +140,7 @@ const $$New = createComponent(async ($$result, $$props, $$slots) => {
   const postFilterNews = allPosts.sort(
     (item1, item2) => new Date(item2.frontmatter.pubDate).getTime() - new Date(item1.frontmatter.pubDate).getTime()
   ).slice(0, 4);
+  console.log(postFilterNews);
   return renderTemplate`${maybeRenderHead()}<section class="max-w-[1440px] mx-auto py-12"> <article class="flex items-center justify-between max-w-[1440px] mx-auto mb-5"> <h2 class="text-3xl font-bold">What´s new</h2> <p class="text-base font-semibold">view the archive</p> </article> <ul class="flex flex-wrap justify-between gap-y-11"> ${postFilterNews.map((data) => {
     const { image, tags, pubDate, title, description } = data.frontmatter;
     let valueTag = tagCard.filter(

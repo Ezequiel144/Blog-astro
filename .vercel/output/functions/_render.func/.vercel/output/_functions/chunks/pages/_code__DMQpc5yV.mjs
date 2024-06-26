@@ -8,8 +8,8 @@ const $$Astro$2 = createAstro();
 const $$Tag = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro$2, $$props, $$slots);
   Astro2.self = $$Tag;
-  const { tagCard } = Astro2.props;
-  return renderTemplate`${maybeRenderHead()}<div class="flex items-center gap-x-2 py-0.5"> <div class="p-1.5 rounded-lg shadow-md"> ${renderComponent($$result, "Image", $$Image, { "src": tagCard.icon, "width": 24, "height": 24, "alt": tagCard.name })} </div> <h5 class="text-base font-medium">${tagCard.name}</h5> </div>`;
+  const { tag } = Astro2.props;
+  return renderTemplate`${maybeRenderHead()}<div class="flex items-center gap-x-2 py-0.5"> <div class="p-1.5 rounded-lg shadow-md"> ${renderComponent($$result, "Image", $$Image, { "src": tag.icon, "width": 24, "height": 24, "alt": tag.name })} </div> <h5 class="text-base font-medium">${tag.name}</h5> </div>`;
 }, "C:/Users/Ezequiel/Documents/Desarrollo Web/Astro/Blog/blog-main/src/components/news/Tag.astro", void 0);
 
 const $$Astro$1 = createAstro();
