@@ -12,7 +12,7 @@ image:
   alt: "web developer - website"
 tags: ["website", "code", "javascript"]
 category: "code"
-slug: "/post/post-1-new"
+slug: "/post/post-9-new"
 ---
 
 # about version 8
