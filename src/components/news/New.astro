@@ -61,11 +61,10 @@ const allPosts = await Astro.glob("/src/pages/post/*.md");
 const postFilterNews = allPosts
   .sort(
     (item1, item2) =>
-      new Date(item2.frontmatter.pubDate) - new Date(item1.frontmatter.pubDate)
+      new Date(item2.frontmatter.pubDate).getTime() - new Date(item1.frontmatter.pubDate).getTime()
   )
   .slice(0, 4);
 
-/* console.log(postFilterNews) */
 ---
 
 <section class="max-w-[1440px] mx-auto py-12">

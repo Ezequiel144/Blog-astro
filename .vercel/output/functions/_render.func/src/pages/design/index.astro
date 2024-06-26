@@ -1,29 +1,26 @@
 ---
 import CardFilter from "../../components/CardFilter.astro";
-import LayouteFilterCode from "../../layouts/LayouteFilterCode.astro";
+import LayouteFilter from "../../layouts/LayouteFilter.astro";
 import { tagCard } from "../../utils";
 
-
 const allPosts = await Astro.glob("/src/pages/post/*.md");
-const filterCode = allPosts.filter((post) =>
-  post.frontmatter.category === "code"
+const filterDesign = allPosts.filter((post) =>
+  post.frontmatter.category === "design"
 );
-
-/* const list = allPosts.filter(post => post.frontmatter.category === "code")
-
-console.log(list.length) */
+/* .slice(0, 6) */
+/* console.log(filterDesign) */
 ---
 
-<LayouteFilterCode title="code">
-  <main class="w-full min-h-screen max-w-[1440px] mx-auto">
+<LayouteFilter title="blog-design">
+  <main class="w-full min-h-screen">
     <ul class="max-w-[1440px] mx-auto grid grid-cols-gridPosts gap-y-8">
       {
-        filterCode.map((item) => {
+        filterDesign.map((item) => {
           const { image, tags, title, description } = item.frontmatter;
           let valueTag = tagCard.filter(
-            (item: { name: string }) => /* item.name === tags[0] */tags.includes(item.name)
+            (item: { name: string }) => /* item.name === tags[0] */ tags.includes(item.name)
           );
-          /* console.log(valueTag) */
+          console.log(valueTag)
           return (
             <CardFilter
               image={image.url}
@@ -36,4 +33,4 @@ console.log(list.length) */
       }
     </ul>
   </main>
-</LayouteFilterCode>
+</LayouteFilter>

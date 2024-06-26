@@ -1,0 +1,96 @@
+{
+	"version": 3,
+	"routes": [
+		{
+			"src": "^/_astro/(.*)$",
+			"headers": {
+				"cache-control": "public, max-age=31536000, immutable"
+			},
+			"continue": true
+		},
+		{
+			"handle": "filesystem"
+		},
+		{
+			"src": "^\\/_image$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/404\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/about\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/code\\/([^/]+?)\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/code\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/collenctions\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/contact\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/design\\/([^/]+?)\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/design\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/post\\/post-1-new\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/post\\/post-2-new\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/post\\/post-3-new\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/post\\/post-4-new\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/post\\/post-5-new\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/post\\/post-6-new\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/post\\/post-7-new\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/post\\/post-8-new\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/post\\/post-9-new\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/$",
+			"dest": "_render"
+		},
+		{
+			"src": "/.*",
+			"dest": "_render",
+			"status": 404
+		}
+	]
+}
