@@ -2,13 +2,14 @@
 import Image from "astro/components/Image.astro";
 /* import type { Tagcard } from "../../interface"; */
 
-const { tagCard }: any = Astro.props;
+const { tag } = Astro.props as any;
+
 
 ---
 
 <div class="flex items-center gap-x-2 py-0.5">
   <div class="p-1.5 rounded-lg shadow-md">
-    <Image src={tagCard.icon} width={24} height={24} alt={tagCard.name} />
+    <Image src={tag.icon} width={24} height={24} alt={tag.name} />
   </div>
-  <h5 class="text-base font-medium">{tagCard.name}</h5>
+  <h5 class="text-base font-medium">{tag.name}</h5>
 </div>
