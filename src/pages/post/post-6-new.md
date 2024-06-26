@@ -12,7 +12,7 @@ image:
   alt: "web developer - website"
 tags: ["design", "developer"]
 category: "design"
-slug: "/post/post-1-new"
+slug: "/post/post-6-new"
 ---
 
 # about version 8
