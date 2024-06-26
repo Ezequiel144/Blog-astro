@@ -3,39 +3,6 @@ import CardFilter from "../../components/CardFilter.astro";
 import LayouteFilterCode from "../../layouts/LayouteFilterCode.astro";
 import { tagCard } from "../../utils";
 
-const listMenuCode = [
-  {
-    href: "/code/animation",
-    icon: "/svg/tag-animation.svg",
-    name: "animation",
-  },
-  {
-    href: "/code/css",
-    icon: "/svg/tag-css.svg",
-    name: "css",
-  },
-  {
-    href: "/code/patterns",
-    icon: "/svg/tag-patterns.svg",
-    name: "patterns",
-  },
-  {
-    href: "/code/javascript",
-    icon: "/svg/tag-js.svg",
-    name: "javascript",
-  },
-  {
-    href: "/code/typescript",
-    icon: "/svg/tag-angular.svg",
-    name: "angular",
-  },
-  {
-    href: "/code/react",
-    icon: "/svg/tag-react.svg",
-    name: "react",
-  },
-];
-
 const allPosts = await Astro.glob("/src/pages/post/*.md");
 const filterCode = allPosts.filter((post) =>
   post.frontmatter.category === "code"

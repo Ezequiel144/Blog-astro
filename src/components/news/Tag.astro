@@ -1,8 +1,7 @@
 ---
 import Image from "astro/components/Image.astro";
-import type { Tagcard } from "../../interface";
 
-const { tag } = Astro.props as Tagcard;
+const { tag } = Astro.props as any;
 ---
 
 <div class="flex items-center gap-x-2 py-0.5">
