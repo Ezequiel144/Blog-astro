@@ -1,11 +1,9 @@
-/* empty css                          */
-import { A as AstroError, c as InvalidImageService, d as ExpectedImageOptions, E as ExpectedImage, F as FailedToFetchRemoteImageDimensions, e as createComponent, f as ImageMissingAlt, r as renderTemplate, m as maybeRenderHead, g as addAttribute, s as spreadAttributes, h as createAstro, i as renderComponent, j as renderHead, k as renderSlot } from '../astro__F21ntD0.mjs';
-import 'kleur/colors';
+import { isRemotePath } from '@astrojs/internal-helpers/path';
+import { A as AstroError, c as InvalidImageService, d as ExpectedImageOptions, E as ExpectedImage, F as FailedToFetchRemoteImageDimensions, e as createComponent, f as ImageMissingAlt, r as renderTemplate, m as maybeRenderHead, g as addAttribute, s as spreadAttributes, h as createAstro } from '../astro__F21ntD0.mjs';
+import { r as resolveSrc, i as isRemoteImage, a as isESMImportedImage, b as isLocalService, D as DEFAULT_HASH_PROPS, c as isRemoteAllowed } from '../astro/assets-service_DmTIPAbD.mjs';
 import 'html-escaper';
-/* empty css                               */
-import { r as resolveSrc, i as isRemoteImage, a as isESMImportedImage, b as isLocalService, D as DEFAULT_HASH_PROPS } from '../astro/assets-service_2Lk8L_IG.mjs';
-import * as mime from 'mrmime';
 import 'clsx';
+import * as mime from 'mrmime';
 
 const decoder = new TextDecoder();
 const toUTF8String = (input, start = 0, end = input.length) => decoder.decode(input.slice(start, end));
@@ -810,7 +808,7 @@ async function getConfiguredImageService() {
   if (!globalThis?.astroAsset?.imageService) {
     const { default: service } = await import(
       // @ts-expect-error
-      '../astro/assets-service_2Lk8L_IG.mjs'
+      '../astro/assets-service_DmTIPAbD.mjs'
     ).then(n => n.s).catch((e) => {
       const error = new AstroError(InvalidImageService);
       error.cause = e;
@@ -900,9 +898,9 @@ async function getImage$1(options, imageConfig) {
   };
 }
 
-const $$Astro$4 = createAstro();
+const $$Astro$1 = createAstro();
 const $$Image = createComponent(async ($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$4, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
   Astro2.self = $$Image;
   const props = Astro2.props;
   if (props.alt === void 0 || props.alt === null) {
@@ -922,9 +920,9 @@ const $$Image = createComponent(async ($$result, $$props, $$slots) => {
   return renderTemplate`${maybeRenderHead()}<img${addAttribute(image.src, "src")}${spreadAttributes(additionalAttributes)}${spreadAttributes(image.attributes)}>`;
 }, "C:/Users/Ezequiel/Documents/Desarrollo Web/Astro/Blog/blog-main/node_modules/astro/components/Image.astro", void 0);
 
-const $$Astro$3 = createAstro();
+const $$Astro = createAstro();
 const $$Picture = createComponent(async ($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$3, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Picture;
   const defaultFormats = ["webp"];
   const defaultFallbackFormat = "png";
@@ -985,101 +983,89 @@ const $$Picture = createComponent(async ($$result, $$props, $$slots) => {
 const imageConfig = {"service":{"entrypoint":"astro/assets/services/sharp","config":{}},"domains":[],"remotePatterns":[]};
 					const getImage = async (options) => await getImage$1(options, imageConfig);
 
-const $$Astro$2 = createAstro();
-const $$Navbar = createComponent(($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$2, $$props, $$slots);
-  Astro2.self = $$Navbar;
-  const listNavbar = [
-    {
-      icon: "/svg/header-design.svg",
-      href: "/design",
-      name: "design"
-    },
-    {
-      icon: "/svg/header-code.svg",
-      href: "/code",
-      name: "code"
-    },
-    {
-      icon: "/svg/header-design.svg",
-      href: "/collenctions",
-      name: "collenctions"
-    },
-    {
-      icon: "/svg/header-about.svg",
-      href: "/about",
-      name: "about"
-    },
-    {
-      icon: "/svg/header-contact.svg",
-      href: "/contact",
-      name: "contact"
+const fnv1a52 = (str) => {
+  const len = str.length;
+  let i = 0, t0 = 0, v0 = 8997, t1 = 0, v1 = 33826, t2 = 0, v2 = 40164, t3 = 0, v3 = 52210;
+  while (i < len) {
+    v0 ^= str.charCodeAt(i++);
+    t0 = v0 * 435;
+    t1 = v1 * 435;
+    t2 = v2 * 435;
+    t3 = v3 * 435;
+    t2 += v0 << 8;
+    t3 += v1 << 8;
+    t1 += t0 >>> 16;
+    v0 = t0 & 65535;
+    t2 += t1 >>> 16;
+    v1 = t1 & 65535;
+    v3 = t3 + (t2 >>> 16) & 65535;
+    v2 = t2 & 65535;
+  }
+  return (v3 & 15) * 281474976710656 + v2 * 4294967296 + v1 * 65536 + (v0 ^ v3 >> 4);
+};
+const etag = (payload, weak = false) => {
+  const prefix = weak ? 'W/"' : '"';
+  return prefix + fnv1a52(payload).toString(36) + payload.length.toString(36) + '"';
+};
+
+async function loadRemoteImage(src, headers) {
+  try {
+    const res = await fetch(src, {
+      // Forward all headers from the original request
+      headers
+    });
+    if (!res.ok) {
+      return void 0;
     }
-  ];
-  return renderTemplate`${maybeRenderHead()}<header class="flex items-center justify-between h-[90px] max-w-[1440px] mx-auto"> <a href="/"> <p class="text-3xl font-normal tracking-wide">
-Blogeando<span class="font-bold bg-green-950 text-white py-1 px-2">ando</span> </p> </a> <nav> <li class="flex items-center gap-x-5"> ${listNavbar.map((menu) => renderTemplate`<ul> <a${addAttribute(menu.href, "href")}${addAttribute(["flex items-center gap-x-2 font-normal", [
-    "flex items-center gap-x-2 font-normal",
-    {
-      "bg-green-200 rounded-xl px-2 py-1.5": Astro2.url.pathname === `/${menu.name}`
+    return await res.arrayBuffer();
+  } catch (err) {
+    return void 0;
+  }
+}
+const GET = async ({ request }) => {
+  try {
+    const imageService = await getConfiguredImageService();
+    if (!("transform" in imageService)) {
+      throw new Error("Configured image service is not a local service");
     }
-    /* {
-      "bg-green-200 rounded-xl px-2 py-1.5":
-        Astro.url.pathname === `/${menu.name}/`,
-    }, */
-  ]], "class:list")}> ${renderComponent($$result, "Image", $$Image, { "src": menu.icon, "width": "16", "height": "16", "alt": menu.name })} ${menu.name} </a> </ul>`)} </li> </nav> </header>`;
-}, "C:/Users/Ezequiel/Documents/Desarrollo Web/Astro/Blog/blog-main/src/components/Navbar.astro", void 0);
+    const url = new URL(request.url);
+    const transform = await imageService.parseURL(url, imageConfig);
+    if (!transform?.src) {
+      throw new Error("Incorrect transform returned by `parseURL`");
+    }
+    let inputBuffer = void 0;
+    const isRemoteImage = isRemotePath(transform.src);
+    const sourceUrl = isRemoteImage ? new URL(transform.src) : new URL(transform.src, url.origin);
+    if (isRemoteImage && isRemoteAllowed(transform.src, imageConfig) === false) {
+      return new Response("Forbidden", { status: 403 });
+    }
+    inputBuffer = await loadRemoteImage(sourceUrl, isRemoteImage ? new Headers() : request.headers);
+    if (!inputBuffer) {
+      return new Response("Not Found", { status: 404 });
+    }
+    const { data, format } = await imageService.transform(
+      new Uint8Array(inputBuffer),
+      transform,
+      imageConfig
+    );
+    return new Response(data, {
+      status: 200,
+      headers: {
+        "Content-Type": mime.lookup(format) ?? `image/${format}`,
+        "Cache-Control": "public, max-age=31536000",
+        ETag: etag(data.toString()),
+        Date: (/* @__PURE__ */ new Date()).toUTCString()
+      }
+    });
+  } catch (err) {
+    console.error("Could not process image request:", err);
+    return new Response(`Server Error: ${err}`, { status: 500 });
+  }
+};
 
-const $$Astro$1 = createAstro();
-const $$InputsForm = createComponent(($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
-  Astro2.self = $$InputsForm;
-  const { label, subLabel, inputType } = Astro2.props;
-  return renderTemplate`${maybeRenderHead()}<label class="flex flex-col text-sm font-semibold">
-first name
-${label} <span class="text-xs font-normal">${subLabel}</span> <input${addAttribute(inputType, "type")} class="rounded-lg h-10 shadow-inner border border-gray-200 mt-2"> </label>`;
-}, "C:/Users/Ezequiel/Documents/Desarrollo Web/Astro/Blog/blog-main/src/components/contactUs/InputsForm.astro", void 0);
-
-const $$FormContact = createComponent(($$result, $$props, $$slots) => {
-  return renderTemplate`${maybeRenderHead()}<form class="flex flex-col gap-y-3 h-full"> ${renderComponent($$result, "InputsForm", $$InputsForm, { "label": "first name", "subLabel": "What do you go by?", "inputType": "text" })} ${renderComponent($$result, "InputsForm", $$InputsForm, { "label": "email", "subLabel": "You best email address", "inputType": "email" })} <div class="flex items-center justify-between"> <p class="text-sm text-darkGreen-600">join 700+ designers</p> <button class="px-3 py-1.5 bg-yellow-500 rounded-lg text-base font-normal">sing me up</button> </div> </form>`;
-}, "C:/Users/Ezequiel/Documents/Desarrollo Web/Astro/Blog/blog-main/src/components/contactUs/FormContact.astro", void 0);
-
-const $$ContactUs = createComponent(($$result, $$props, $$slots) => {
-  return renderTemplate`${maybeRenderHead()}<section class="mx-auto max-w-[1440px] py-12"> <article class="rounded-xl bg-white w-full min-h-[500px] flex"> <div class="w-[40%] h-full border-r border-gray-200 p-12 flex flex-col justify-between gap-y-10"> <section class="flex flex-col items-center"> <div></div> <h3 class="text-4xl font-bold">get the articles</h3> <p class="text-sm fonr-normal text-center">
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-          architecto accusamus vitae dignissimos deleniti.
-</p> </section> ${renderComponent($$result, "FormContact", $$FormContact, {})} <section class="flex items-center justify-center"> <p class="text-xs font-normal text-center">
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis
-          excepturi harum est cupiditate facilis eius eos tenetur eveniet minus
-          nihil nemo delectus, obcaecati in minima soluta, autem molestias
-          maxime iusto.
-</p> </section> </div> <div class="w-[60%] h-[550px] "> <section class="w-full h-[50%] border-b border-gray-200 px-12 py-8 flex flex-col justify-end "> <h4 class="text-3xl font-bold">about this site</h4> <p>
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
-          reiciendis consequuntur velit fugiat laudantium dignissimos enim eum
-          porro nobis vel praesentium, voluptatum nisi! Veritatis id possimus
-          atque necessitatibus. Eos, quidem?
-</p> </section> <section class="w-full h-[50%] grid grid-rows-2 grid-flow-col "> <div class="row-span-2 col-span-1 p-14 flex flex-col justify-end border-r border-gray-200"> <h4 class="text-3xl font-bold">about this site</h4> <ul class="flex flex-wrap gap-3"> <li>Home</li> <li>Home</li> <li>Home</li> <li>Home</li> <li>Home</li> <li>Home</li> <li>Home</li> </ul> </div> <div class="col-span-2 flex items-center justify-center border-b border-gray-200"> <p>old design</p> </div> <div class="col-span-2 p-8 flex flex-col justify-end"> <h4 class="text-3xl font-bold">elsewhere</h4> <ul class="flex flex-wrap gap-3"> <li>Home</li> <li>Home</li> <li>Home</li> <li>Home</li> <li>Home</li> <li>Home</li> <li>Home</li> </ul> </div> </section> </div> </article> </section>`;
-}, "C:/Users/Ezequiel/Documents/Desarrollo Web/Astro/Blog/blog-main/src/components/contactUs/ContactUs.astro", void 0);
-
-const $$Astro = createAstro();
-const $$Layout = createComponent(($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
-  Astro2.self = $$Layout;
-  const { title } = Astro2.props;
-  return renderTemplate`<html lang="en"> <head><meta charset="UTF-8"><meta name="description" content="Astro description"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator"${addAttribute(Astro2.generator, "content")}><title>${title}</title>${renderHead()}</head> <body> ${renderComponent($$result, "Navbar", $$Navbar, {})} ${renderSlot($$result, $$slots["default"])} ${renderComponent($$result, "ContactUs", $$ContactUs, {})} </body></html>`;
-}, "C:/Users/Ezequiel/Documents/Desarrollo Web/Astro/Blog/blog-main/src/layouts/Layout.astro", void 0);
-
-const $$404 = createComponent(($$result, $$props, $$slots) => {
-  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "page error 404" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main class="max-w-[1440px] mx-auto"> <section class=" flex flex-col gap-y-2 items-center"> <h1 class=" text-6xl font-bold">404</h1> <h3 class=" font-semibold text-2xl">Error</h3> <p>Pagina no encontrada </p> <a href="/" class="px-2 py-1.5 rounded-lg bg-green-950 text-white font-semibold">volver a inicio</a> </section> </main> ` })}`;
-}, "C:/Users/Ezequiel/Documents/Desarrollo Web/Astro/Blog/blog-main/src/pages/404.astro", void 0);
-
-const $$file = "C:/Users/Ezequiel/Documents/Desarrollo Web/Astro/Blog/blog-main/src/pages/404.astro";
-const $$url = "/404";
-
-const _404 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+const generic = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
-  default: $$404,
-  file: $$file,
-  url: $$url
+  GET
 }, Symbol.toStringTag, { value: 'Module' }));
 
-export { $$Image as $, _404 as _, $$Navbar as a, $$ContactUs as b, $$Layout as c, getConfiguredImageService as g, imageConfig as i };
+export { $$Image as $, generic as g };
