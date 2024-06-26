@@ -1,5 +1,5 @@
 import { renderers } from './renderers.mjs';
-import { manifest } from './manifest_DNixHpQ1.mjs';
+import { manifest } from './manifest_BKNpCVc2.mjs';
 import * as serverEntrypointModule from '@astrojs/netlify/ssr-function.js';
 import { onRequest } from './_noop-middleware.mjs';
 
@@ -7,11 +7,11 @@ const _page0 = () => import('./chunks/generic_DpuAuNeO.mjs');
 const _page1 = () => import('./chunks/404_DgfKpl2L.mjs');
 const _page2 = () => import('./chunks/about_qnDIlHBF.mjs');
 const _page3 = () => import('./chunks/_code__ikZhJgcr.mjs');
-const _page4 = () => import('./chunks/index_BnET7zJg.mjs');
+const _page4 = () => import('./chunks/index_wIrEDduO.mjs');
 const _page5 = () => import('./chunks/collenctions_DFuH1lDQ.mjs');
 const _page6 = () => import('./chunks/contact_D2YAcuNZ.mjs');
 const _page7 = () => import('./chunks/_tagDesign__DBI6Fr6k.mjs');
-const _page8 = () => import('./chunks/index_cIyVk__u.mjs');
+const _page8 = () => import('./chunks/index_BNWhXnbR.mjs');
 const _page9 = () => import('./chunks/post-1-new_Bx7MU229.mjs');
 const _page10 = () => import('./chunks/post-2-new_t_iDQxkW.mjs');
 const _page11 = () => import('./chunks/post-3-new_BAUYuwPT.mjs');
@@ -21,7 +21,7 @@ const _page14 = () => import('./chunks/post-6-new_DGUp5Idm.mjs');
 const _page15 = () => import('./chunks/post-7-new_DHh7GGrd.mjs');
 const _page16 = () => import('./chunks/post-8-new_Cz3Fja68.mjs');
 const _page17 = () => import('./chunks/post-9-new_DWucOq6s.mjs');
-const _page18 = () => import('./chunks/index_BBtRExur.mjs');
+const _page18 = () => import('./chunks/index_B9reJRBF.mjs');
 const pageMap = new Map([
     ["node_modules/astro/dist/assets/endpoint/generic.js", _page0],
     ["src/pages/404.astro", _page1],
@@ -50,7 +50,7 @@ const _manifest = Object.assign(manifest, {
     middleware: onRequest
 });
 const _args = {
-    "middlewareSecret": "621bac05-091c-475d-883a-bee1c4457d6e"
+    "middlewareSecret": "1f8e6b19-0a2d-4ffe-8c48-fc23399b6fee"
 };
 const _exports = serverEntrypointModule.createExports(_manifest, _args);
 const __astrojsSsrVirtualEntry = _exports.default;

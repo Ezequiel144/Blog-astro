@@ -14,7 +14,7 @@ const $$Index$2 = createComponent(async ($$result, $$props, $$slots) => {
   const filterCode = allPosts.filter(
     (post) => post.frontmatter.category === "code"
   );
-  return renderTemplate`${renderComponent($$result, "LayouteFilterCode", $$LayouteFilterCode, { "title": "code" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main class="w-full min-h-screen max-w-[1440px] mx-auto"> <ul class="max-w-[1440px] mx-auto grid grid-cols-gridPosts gap-y-8"> ${filterCode.map((item) => {
+  return renderTemplate`${renderComponent($$result, "LayouteFilterCode", $$LayouteFilterCode, { "title": "code" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<section class="w-full min-h-screen max-w-[1440px] mx-auto"> <ul class="max-w-[1440px] mx-auto grid grid-cols-gridPosts gap-y-8"> ${filterCode.map((item) => {
     const { image, tags, title, description } = item.frontmatter;
     let valueTag = tagCard.filter(
       (item2) => (
@@ -23,7 +23,7 @@ const $$Index$2 = createComponent(async ($$result, $$props, $$slots) => {
       )
     );
     return renderTemplate`${renderComponent($$result2, "CardFilter", $$CardFilter, { "image": image.url, "title": title, "description": description, "tag": valueTag })}`;
-  })} </ul> </main> ` })}`;
+  })} </ul> </section> ` })}`;
 }, "C:/Users/Ezequiel/Documents/Desarrollo Web/Astro/Blog/blog-main/src/pages/code/index.astro", void 0);
 
 const $$file$2 = "C:/Users/Ezequiel/Documents/Desarrollo Web/Astro/Blog/blog-main/src/pages/code/index.astro";
@@ -44,7 +44,7 @@ const $$Index$1 = createComponent(async ($$result, $$props, $$slots) => {
   const filterDesign = allPosts.filter(
     (post) => post.frontmatter.category === "design"
   );
-  return renderTemplate`${renderComponent($$result, "LayouteFilter", $$LayouteFilter, { "title": "blog-design" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main class="w-full min-h-screen"> <ul class="max-w-[1440px] mx-auto grid grid-cols-gridPosts gap-y-8"> ${filterDesign.map((item) => {
+  return renderTemplate`${renderComponent($$result, "LayouteFilter", $$LayouteFilter, { "title": "blog-design" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<section class="w-full min-h-screen"> <ul class="max-w-[1440px] mx-auto grid grid-cols-gridPosts gap-y-8"> ${filterDesign.map((item) => {
     const { image, tags, title, description } = item.frontmatter;
     let valueTag = tagCard.filter(
       (item2) => (
@@ -54,7 +54,7 @@ const $$Index$1 = createComponent(async ($$result, $$props, $$slots) => {
     );
     console.log(valueTag);
     return renderTemplate`${renderComponent($$result2, "CardFilter", $$CardFilter, { "image": image.url, "title": title, "description": description, "tag": valueTag })}`;
-  })} </ul> </main> ` })}`;
+  })} </ul> </section> ` })}`;
 }, "C:/Users/Ezequiel/Documents/Desarrollo Web/Astro/Blog/blog-main/src/pages/design/index.astro", void 0);
 
 const $$file$1 = "C:/Users/Ezequiel/Documents/Desarrollo Web/Astro/Blog/blog-main/src/pages/design/index.astro";
