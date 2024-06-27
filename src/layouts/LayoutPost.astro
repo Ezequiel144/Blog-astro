@@ -1,9 +1,31 @@
 ---
+import Image from "astro/components/Image.astro";
+import Tag from "../components/news/Tag.astro";
 import Layout from "../layouts/Layout.astro";
+import { tagCard } from "../utils";
+
+const { frontmatter } = Astro.props;
+let tagAndIcon: { icon: string; name: string }[] = [];
+frontmatter.tags.map((item: string) => {
+  tagCard.forEach((subItem) =>
+    subItem.name === item ? tagAndIcon.push(subItem) : ""
+  );
+});
+
 ---
 
 <Layout title="Post">
-    <main>
-        <h1>hola</h1>
-    </main>
+  <main class="max-w-[1440px] mx-auto relative">
+    <Image src={frontmatter.image.url} class="w-full h-[300px] relative top-0 left-0 object-cover" width={1440} height={300} alt={frontmatter.image.alt} format=".webs" />
+    <h1 class="text-4xl font-bold py-3">{frontmatter.title}</h1>
+    <section class=" flex gap-x-4 pb-3">
+      {
+        tagAndIcon.map((item: { icon: string; name: string }) => {
+          return <Tag tag={item} />;
+        })
+      }
+    </section>
+
+    <slot />
+  </main>
 </Layout>
