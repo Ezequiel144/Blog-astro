@@ -33,20 +33,15 @@ export async function getStaticPaths(): Promise<any> {
 const { design } = Astro.params;
 const { posts }: any = Astro.props;
 
-/* console.log(posts); */
 ---
 
 <LayouteFilter title={design}>
-  <!-- <h1 class="">{tagDesign}</h1>
-  <p>{posts}</p> -->
   <ul class="max-w-[1440px] mx-auto grid grid-cols-gridPosts gap-y-8">
     {
       posts?.map((post: { frontmatter: any }) => {
         const { frontmatter } = post;
         let valueTag = tagCard.filter((item: { name: string }) =>
-          /* item.name === frontmatter.tags[0] */ frontmatter.tags.includes(
-            item.name
-          )
+          frontmatter.tags.includes(item.name)
         );
         return (
           <CardFilter
@@ -54,6 +49,7 @@ const { posts }: any = Astro.props;
             title={frontmatter.title}
             description={frontmatter.description}
             tag={valueTag}
+            slug={post.frontmatter.slug}
           />
         );
       })
