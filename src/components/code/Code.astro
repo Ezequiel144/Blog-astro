@@ -21,11 +21,11 @@ const filterTagsCode = allPosts
   <ul class="flex flex-wrap justify-between gap-10">
     {
       filterTagsCode.map((card) => {
-        const { tags, title, description } = card.frontmatter;
+        const { tags, title, description, slug } = card.frontmatter;
         let valueTag = tagCard.filter(
           (item: { name: string }) => item.name === tags[0]
         );
-        return <CardMini tag={valueTag[0]} title={title} description={description} />;
+        return <CardMini tag={valueTag[0]} title={title} description={description} slug={slug}/>;
       })
     }
   </ul>

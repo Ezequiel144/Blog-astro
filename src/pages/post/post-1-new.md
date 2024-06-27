@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/LayoutPost.astro
-title: "about version 8"
+title: "design ux"
 pubDate: 2024-05-12
 description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit.
   Voluptatibus, quisquam. Eos sit odit voluptatibus libero. Lorem
