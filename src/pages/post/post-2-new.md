@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/LayoutPost.astro
-title: "about version 8"
+title: "angular 19"
 pubDate: 2024-06-17
 description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit.
   Voluptatibus, quisquam. Eos sit odit voluptatibus libero. Lorem
@@ -8,7 +8,7 @@ description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit.
   quisquam. Eos sit odit voluptatibus libero."
 author: "Juan carlos - web developer"
 image:
-  url: "/image/pexels-pixabay-40185.jpg"
+  url: "https://vilmanunez.com/wp-content/uploads/2015/06/guia-dise--o-blog.png"
   alt: "web developer - website"
 tags: ["patterns", "angular"]
 category: "code"

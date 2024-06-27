@@ -65,7 +65,7 @@ const postFilterNews = allPosts
   )
   .slice(0, 4);
 
-console.log(postFilterNews)
+/* console.log(postFilterNews) */
 ---
 
 <section class="max-w-[1440px] mx-auto py-12">
@@ -78,7 +78,7 @@ console.log(postFilterNews)
   <ul class="flex flex-wrap justify-between gap-y-11">
     {
       postFilterNews.map((data) => {
-        const { image, tags, pubDate, title, description } = data.frontmatter;
+        const { image, tags, pubDate, title, description, slug } = data.frontmatter;
         let valueTag = tagCard.filter(
           (item: { name: string }) => item.name === tags[0]
         );
@@ -89,6 +89,7 @@ console.log(postFilterNews)
             date={pubDate}
             title={title}
             description={description}
+            slug={slug}
           />
         );
       })

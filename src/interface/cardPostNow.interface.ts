@@ -8,4 +8,5 @@ export interface Cardpost {
   date?: string;
   title: string;
   description: string;
+  slug?: string;
 }

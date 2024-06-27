@@ -8,9 +8,9 @@ description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit.
   quisquam. Eos sit odit voluptatibus libero."
 author: "Juan carlos - web developer"
 image:
-  url: "/image/pexels-pixabay-40185.jpg"
+  url: "https://soyhorizonte.com/wp-content/uploads/2020/10/Javascript-by-SoyHorizonte.jpg"
   alt: "web developer - website"
-tags: ["website", "code", "javascript"]
+tags: ["website", "javascript"]
 category: "code"
 slug: "/post/post-9-new"
 ---

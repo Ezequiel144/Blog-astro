@@ -2,15 +2,17 @@
 import type { Cardpost } from "../interface";
 import Tag from "./news/Tag.astro";
 
-const { tag, title, description } = Astro.props as Cardpost;
+const { tag, title, description, slug } = Astro.props as Cardpost;
 ---
 
 <li
-  class="bg-white rounded-lg w-[30%] min-h-[320px] p-10 flex flex-col gap-y-6 shadow-lg"
+  class="bg-white rounded-lg w-[30%] min-h-[320px] shadow-lg"
 >
-  <Tag tag={tag} />
-  <section class="flex flex-col gap-y-2">
-    <h3 class="text-3xl font-bold">{title}</h3>
-    <p class="font-normal text-sm">{description}</p>
-  </section>
+  <a href={slug} class=" h-full flex flex-col gap-y-6 p-10 rounded-lg hover:transition-all hover:duration-150 hover:border-b-4 hover:border-green-700 ">
+    <Tag tag={tag} />
+    <section class="flex flex-col gap-y-2">
+      <h3 class="text-3xl font-bold">{title}</h3>
+      <p class="font-normal text-sm">{description}</p>
+    </section>
+  </a>
 </li>
