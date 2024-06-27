@@ -3,7 +3,7 @@ import Image from "astro/components/Image.astro";
 import Tag from "../components/news/Tag.astro";
 
 const { image, title, description, tag, slug } = Astro.props;
-console.log(slug);
+console.log(tag.slice(0,2));
 ---
 
 <li class="w-[300px] h-[500px] bg-white rounded-xl shadow-lg">
@@ -17,13 +17,13 @@ console.log(slug);
       alt={"image-design-card-title"}
     />
   </a>  
-  <div class="w-full h-[300px] rounded-b-lg px-4 py-3 flex flex-col gap-y-4">
-    <section class="flex items-center gap-x-2 w-full overflow-auto">
-      {tag.map((item: any) => <Tag tag={item} />)}
+  <div class="w-full h-[250px] rounded-b-lg px-4 py-3 flex flex-col gap-y-4">
+    <section class="flex items-center gap-x-2 w-full overflow-y-hidden h-[80px]">
+      {tag.slice(0,2).map((item: any) => <Tag tag={item} />)}
     </section>
     <!-- <Tag tag={tag} /> -->
     <h2 class="text-3xl font-bold">{title}</h2>
-    <p class="text-sm font-normal text-ellipsis w-full">
+    <p class="text-sm font-normal overflow-hidden w-full h-full" >
       {description}
     </p>
   </div>
