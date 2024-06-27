@@ -15,11 +15,28 @@ category: "code"
 slug: "/post/post-2-new"
 ---
 
-# about version 8
 
-Publicado el: 2024-06-17
+**Publicado el: 2024-06-17**
 
-- about version 8
+[red](/post/post-3-new)
+
+*blue*
+- green
+
+![Alt text](https://www.matesfacil.com/ESO/geometria_plana/circular/arco/T1.png)
+
+<http://example.com/>
+
+\*literal asterisks\*
+
+> lorem
+
+  - lorem lorem lorem
+
+Primer encabezado     | Segundo encabezado
+--------------------- | ---------------------
+Contenido de la celda | Contenido de la celda
+Contenido de la celda | Contenido de la celda
 
 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
 Voluptatibus, quisquam. Eos sit odit voluptatibus libero. Lorem

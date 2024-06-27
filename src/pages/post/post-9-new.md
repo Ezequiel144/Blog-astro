@@ -15,11 +15,7 @@ category: "code"
 slug: "/post/post-9-new"
 ---
 
-# about version 8
-
-Publicado el: 2024-06-17
-
-- about version 8
+**Publicado el: 2024-06-17**  
 
 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
 Voluptatibus, quisquam. Eos sit odit voluptatibus libero. Lorem
