@@ -16,7 +16,7 @@ console.log(isActivesidebar) */
   class="flex items-center justify-between h-[90px] max-w-[1440px] mx-auto px-3"
 >
   <a href="/">
-    <p class="text-3xl font-normal tracking-wide">
+    <p class=" text-2xl lg:text-3xl font-normal tracking-wide">
       Blogeando<span class="font-bold bg-green-950 text-white py-1 px-2"
         >ando</span
       >
@@ -31,7 +31,7 @@ console.log(isActivesidebar) */
               href={menu.href}
               /* class="flex items-center gap-x-2 font-normal" */
               class:list={[
-                "flex items-center gap-x-2 font-normal",
+                "flex items-center gap-x-2 text-xl font-normal",
                 {
                   "bg-green-200 rounded-xl px-2 py-1.5":
                     Astro.url.pathname === `/${menu.name}`,
@@ -42,7 +42,7 @@ console.log(isActivesidebar) */
                 }, */
               ]}
             >
-              <Image src={menu.icon} width="16" height="16" alt={menu.name} />
+              <Image src={menu.icon} width="20" height="20" alt={menu.name} />
               {menu.name}
             </a>
           </ul>
@@ -65,7 +65,7 @@ console.log(isActivesidebar) */
   const menu = document.getElementById("menu-bar") as Element;
   const sidebar = document.getElementById("sidebar") as Element;
   menu?.addEventListener("click",() => {
-    sidebar.classList.remove("top-[-100%]")
-    sidebar.classList.add("top-0")
+    sidebar.classList.remove("top-[-100%]");
+    sidebar.classList.add("top-0");
   })
 </script>
