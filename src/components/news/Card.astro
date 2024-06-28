@@ -3,6 +3,7 @@ import Image from "astro/components/Image.astro";
 import Tag from "./Tag.astro";
 import Date from "./Date.astro";
 import type { Cardpost } from "../../interface";
+import type { TagsCard } from "../../interface/tagsCard.interface";
 
 const { image, tag, date, title, description, slug } = Astro.props as Cardpost;
 
@@ -26,7 +27,8 @@ const { image, tag, date, title, description, slug } = Astro.props as Cardpost;
   >
     {/* contenedor de tags */}
     <article class="flex items-center gap-x-5">
-      <Tag tag={tag} />
+      {tag.map((item: TagsCard) => <Tag tag={item} />)}
+      <!-- <Tag tag={tag} /> -->
       <Date date={date} />
     </article>
     <h3 class="text-5xl font-bold">{title}</h3>
