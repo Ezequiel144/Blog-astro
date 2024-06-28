@@ -14,7 +14,8 @@ export default {
 				}
 			},
 			gridTemplateColumns:{
-				"gridPosts": "repeat(auto-fill, minmax(300px, 1fr))" 
+				"gridPosts": "repeat(auto-fill, minmax(300px, 1fr))",
+				"gridPostHome": "repeat(auto-fill, minmax(300px,1fr))"
 			}
 		},
 	},

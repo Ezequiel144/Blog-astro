@@ -19,7 +19,7 @@ const filterTagsdesign = allPosts
     </h2>
     <p class="text-base font-semibold">explore design</p>
   </article>
-  <ul class="flex flex-wrap justify-between gap-10">
+  <ul class="grid grid-cols-gridPostHome gap-10">
     {
       filterTagsdesign.map((card) => {
         const { tags, title, description, slug } = card.frontmatter;

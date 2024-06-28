@@ -6,7 +6,7 @@ const { tag, title, description, slug } = Astro.props as Cardpost;
 ---
 
 <li
-  class="bg-white rounded-lg w-[30%] min-h-[320px] shadow-lg"
+  class="bg-white rounded-lg w-full max-w-[400px] min-h-[320px] shadow-lg"
 >
   <a href={slug} class=" h-full flex flex-col gap-y-6 p-10 rounded-lg hover:transition-all hover:duration-150 hover:border-b-4 hover:border-green-700 ">
     <Tag tag={tag} />
