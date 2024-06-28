@@ -1,0 +1,56 @@
+---
+import Image from "astro/components/Image.astro";
+import { listNavbar } from "../../utils";
+
+/* console.log(listNavbar); */
+
+/* const { isActive }: any = Astro.props;
+console.log(isActive) */
+---
+
+<section
+  class="flex md:hidden fixed bg-gray-200/30 backdrop-blur-lg top-[-100%] left-0 w-full h-full transition-all duration-300"
+  id="sidebar"
+>
+  <ul class="flex flex-col gap-y-10 w-fit h-fit m-auto">
+    <Image
+      src={"/svg/header-exit.svg"}
+      class="absolute top-8 right-8"
+      width={32}
+      height={32}
+      alt={"exit-menu"}
+      id={"exit-menu"}
+    />
+    {
+      listNavbar.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class="flex gap-x-4 items-center text-lg font-semibold "
+          >
+            <div class="bg-darkGreen-300 p-2 rounded-full">
+              <Image
+                src={link.icon}
+                width={28}
+                height={28}
+                class="h-[28px] w-[28px] "
+                alt={link.name}
+              />
+            </div>
+            {link.name}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<script>
+  const close = document.getElementById("exit-menu") as Element;
+  const sidebar = document.getElementById("sidebar") as Element;
+
+  close.addEventListener("click", () => {
+    sidebar.classList.remove("top-0");
+    sidebar.classList.add("top-[-100%]");
+  });
+</script>
