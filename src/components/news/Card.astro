@@ -10,7 +10,7 @@ const { image, tag, date, title, description, slug } = Astro.props as Cardpost;
 /* console.log(tag) */
 ---
 
-<li class="w-[48%] h-full rounded-lg shadow-lg">
+<li class=" min-w-[300px] w-[48%] h-full rounded-lg shadow-lg">
   {/* imagen */}
   <a href={slug}>
     <Image
