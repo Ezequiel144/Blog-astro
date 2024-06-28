@@ -11,21 +11,28 @@ const filterTagsCode = allPosts
 
 <section class="mx-auto max-w-[1440px] py-12">
   <article
-    class="flex items-center justify-between max-w-[1440px] mx-auto mb-5"
+    class="flex flex-col gap-y-3 sm:flex-row items-start sm:items-center justify-between max-w-[1440px] mx-auto mb-5"
   >
     <h2 class="text-3xl font-bold">
       popular <span class="text-yellow-500">code</span>
     </h2>
     <p class="text-base font-semibold">explore code</p>
   </article>
-  <ul class="flex flex-wrap justify-between gap-10">
+  <ul class="grid grid-cols-gridPostHome justify-center gap-10">
     {
       filterTagsCode.map((card) => {
         const { tags, title, description, slug } = card.frontmatter;
         let valueTag = tagCard.filter(
           (item: { name: string }) => item.name === tags[0]
         );
-        return <CardMini tag={valueTag[0]} title={title} description={description} slug={slug}/>;
+        return (
+          <CardMini
+            tag={valueTag[0]}
+            title={title}
+            description={description}
+            slug={slug}
+          />
+        );
       })
     }
   </ul>

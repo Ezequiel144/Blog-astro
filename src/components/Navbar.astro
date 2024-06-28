@@ -1,56 +1,35 @@
 ---
 import Image from "astro/components/Image.astro";
-import type { NavbarMenu } from "../interface";
-
-const listNavbar: NavbarMenu[] = [
-  {
-    icon: "/svg/header-design.svg",
-    href: "/design",
-    name: "design",
-  },
-  {
-    icon: "/svg/header-code.svg",
-    href: "/code",
-    name: "code",
-  },
-  {
-    icon: "/svg/header-design.svg",
-    href: "/collenctions",
-    name: "collenctions",
-  },
-  {
-    icon: "/svg/header-about.svg",
-    href: "/about",
-    name: "about",
-  },
-  {
-    icon: "/svg/header-contact.svg",
-    href: "/contact",
-    name: "contact",
-  },
-];
+import Sidebar from "../components/navbar/Sidebar.astro";
+import { listNavbar } from "../utils";
 
 /* const canonicalURL = new URL(Astro.url.pathname, Astro.site); */
 /* 
 console.log(Astro.url.pathname); */
+
+/* 
+let isActivesidebar = false;
+console.log(isActivesidebar) */
 ---
 
 <header
-  class="flex items-center justify-between h-[90px] max-w-[1440px] mx-auto"
+  class="flex items-center justify-between h-[90px] max-w-[1440px] mx-auto px-3"
 >
   <a href="/">
     <p class="text-3xl font-normal tracking-wide">
-      Blogeando<span class="font-bold bg-green-950 text-white py-1 px-2">ando</span>
+      Blogeando<span class="font-bold bg-green-950 text-white py-1 px-2"
+        >ando</span
+      >
     </p>
   </a>
   <nav>
-    <li class="flex items-center gap-x-5">
+    <li class="hidden items-center gap-x-5 md:flex">
       {
         listNavbar.map((menu) => (
           <ul>
             <a
               href={menu.href}
-              class="flex items-center gap-x-2 font-normal"
+              /* class="flex items-center gap-x-2 font-normal" */
               class:list={[
                 "flex items-center gap-x-2 font-normal",
                 {
@@ -70,5 +49,23 @@ console.log(Astro.url.pathname); */
         ))
       }
     </li>
+    <Image
+      class="md:hidden"
+      src={"/svg/header-menu.svg"}
+      width={24}
+      height={24}
+      alt={"menu-bar"}
+      id={"menu-bar"}
+    />
   </nav>
+  <Sidebar/>
 </header>
+
+<script>
+  const menu = document.getElementById("menu-bar") as Element;
+  const sidebar = document.getElementById("sidebar") as Element;
+  menu?.addEventListener("click",() => {
+    sidebar.classList.remove("top-[-100%]")
+    sidebar.classList.add("top-0")
+  })
+</script>
