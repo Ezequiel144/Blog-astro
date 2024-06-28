@@ -10,12 +10,12 @@ const { image, tag, date, title, description, slug } = Astro.props as Cardpost;
 /* console.log(tag) */
 ---
 
-<li class=" min-w-[300px] w-[48%] h-full rounded-lg shadow-lg">
+<li class="w-full min-[830px]:w-[48%] h-full rounded-lg shadow-lg">
   {/* imagen */}
   <a href={slug}>
     <Image
       src={image}
-      class={"rounded-t-lg object-cover h-[60%] w-full"}
+      class={"rounded-t-lg object-cover h-[300px] md:h-[60%] w-full"}
       width={620}
       height={300}
       alt={"image blog"}
@@ -31,7 +31,7 @@ const { image, tag, date, title, description, slug } = Astro.props as Cardpost;
       <!-- <Tag tag={tag} /> -->
       <Date date={date} />
     </article>
-    <h3 class="text-5xl font-bold">{title}</h3>
-    <p class="text-base font-regular">{description}</p>
+    <h3 class=" text-3xl md:text-5xl font-bold">{title}</h3>
+    <p class=" text-base font-regular">{description}</p>
   </section>
 </li>
