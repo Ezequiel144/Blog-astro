@@ -36,7 +36,7 @@ const { posts } = Astro.props;
 
 <LayouteFilterCode title={code}>
   <main class="max-w-[1440px] mx-auto">
-    <ul class="max-w-[1440px] mx-auto grid grid-cols-gridPosts gap-y-8">
+    <ul class="max-w-[1440px] mx-auto grid grid-cols-gridPosts gap-8">
       {
         posts?.map((post: any) => {
           const { frontmatter } = post;
