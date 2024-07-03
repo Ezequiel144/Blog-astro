@@ -2,6 +2,7 @@
 import Image from "astro/components/Image.astro";
 import Tag from "../components/news/Tag.astro";
 import Layout from "../layouts/Layout.astro";
+import Date from "../components/news/Date.astro";
 import { tagCard } from "../utils";
 
 const { frontmatter } = Astro.props;
@@ -14,16 +15,11 @@ frontmatter.tags.map((item: string) => {
 ---
 
 <Layout title="Post">
-  <main class="max-w-[1440px] mx-auto relative px-3">
-    <Image
-      src={frontmatter.image.url}
-      class="w-full h-[300px] relative top-0 left-0 object-cover"
-      width={1440}
-      height={300}
-      alt={frontmatter.image.alt}
-      format=".webs"
-    />
-    <h1 class="text-4xl font-bold py-3">{frontmatter.title}</h1>
+  <main class="max-w-[1024px] mx-auto relative px-3 flex flex-col gap-y-5 my-4 ">
+    <Date date={frontmatter.pubDate} />
+    <h1 class="text-4xl md:text-7xl font-extrabold py-3">
+      {frontmatter.title}
+    </h1>
     <section class="flex gap-x-4 pb-3">
       {
         tagAndIcon.map((item: { icon: string; name: string }) => {
@@ -31,6 +27,38 @@ frontmatter.tags.map((item: string) => {
         })
       }
     </section>
+    <Image
+      src={frontmatter.image.url}
+      class="min-w-[300px] w-full object-cover rounded-3xl"
+      width={1280}
+      height={500}
+      alt={frontmatter.image.alt}
+      format=".webs"
+    />
     <slot />
   </main>
 </Layout>
+
+<style is:inline>
+  h2 {
+    font-size: 40px;
+    font-weight: bolder;
+  }
+  h3 {
+    font-size: 36px;
+    font-weight: bolder;
+  }
+  p {
+    font-size: 24px;
+    font-weight: 300;
+    padding: 8px 0;
+  }
+  img{
+    border-radius: 1.5rem;
+  }
+  @media (max-width: 500px) {
+    p{
+      font-size: 16px;
+    }
+  }
+</style>
