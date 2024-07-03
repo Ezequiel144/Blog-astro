@@ -6,7 +6,7 @@ const { image, title, description, tag, slug } = Astro.props;
 /* console.log(tag.slice(0,2)); */
 ---
 
-<li class="w-full h-[500px] bg-white rounded-xl shadow-lg">
+<li class="w-full h-[500px] bg-white rounded-xl shadow-lg hover:outline-2	outline-red-500">
   <a href={slug}>
     <Image
       src={image}

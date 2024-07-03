@@ -6,13 +6,13 @@ const {date} = Astro.props
 ---
 
 <div class="flex items-center gap-x-2">
-    <div class="p-1.5 rounded-lg shadow-md w-[36px] h-[36px] ">
+    <div class="p-1.5 rounded-lg shadow-md w-[36px] h-[36px] felx items-center justify-center border border-gray-300 bg-white  ">
       <Image
         src={"/svg/tag-calendar.svg"}
         width={24}
         height={24}
-        alt={"web site"}
+        alt={"calendar date"}
       />
     </div>
-    <p class="text-base font-medium">{date.slice(0,10).split("-").reverse().join("/")}</p>
+    <p class="text-base font-semibold">{date.slice(0,10).split("-").reverse().join("/")}</p>
   </div>
