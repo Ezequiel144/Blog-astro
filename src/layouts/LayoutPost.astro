@@ -15,9 +15,11 @@ frontmatter.tags.map((item: string) => {
 ---
 
 <Layout title="Post">
-  <main class="max-w-[1280px] mx-auto relative px-3">
+  <main class="max-w-[1024px] mx-auto relative px-3 flex flex-col gap-y-5 my-4 ">
     <Date date={frontmatter.pubDate} />
-    <h1 class="text-7xl font-extrabold py-3">{frontmatter.title}</h1>
+    <h1 class="text-4xl md:text-7xl font-extrabold py-3">
+      {frontmatter.title}
+    </h1>
     <section class="flex gap-x-4 pb-3">
       {
         tagAndIcon.map((item: { icon: string; name: string }) => {
@@ -27,7 +29,7 @@ frontmatter.tags.map((item: string) => {
     </section>
     <Image
       src={frontmatter.image.url}
-      class="w-full object-cover rounded-3xl" 
+      class="min-w-[300px] w-full object-cover rounded-3xl"
       width={1280}
       height={500}
       alt={frontmatter.image.alt}
@@ -36,3 +38,27 @@ frontmatter.tags.map((item: string) => {
     <slot />
   </main>
 </Layout>
+
+<style is:inline>
+  h2 {
+    font-size: 40px;
+    font-weight: bolder;
+  }
+  h3 {
+    font-size: 36px;
+    font-weight: bolder;
+  }
+  p {
+    font-size: 24px;
+    font-weight: 300;
+    padding: 8px 0;
+  }
+  img{
+    border-radius: 1.5rem;
+  }
+  @media (max-width: 500px) {
+    p{
+      font-size: 16px;
+    }
+  }
+</style>
