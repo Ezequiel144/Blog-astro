@@ -3,6 +3,7 @@ import type { Cardpost } from "../interface";
 import Tag from "./news/Tag.astro";
 
 const { tag, title, description, slug } = Astro.props as Cardpost;
+
 ---
 
 <li
@@ -12,7 +13,7 @@ const { tag, title, description, slug } = Astro.props as Cardpost;
     <Tag tag={tag} />
     <section class="flex flex-col gap-y-2">
       <h3 class="text-3xl font-bold">{title}</h3>
-      <p class="font-normal text-sm">{description}</p>
+      <p class="font-normal text-sm">{description.slice(0,220)}</p>
     </section>
   </a>
 </li>
