@@ -1,5 +1,4 @@
 export interface Cardpost {
-  image: string;
   tag: {
     [x: string]: any;
     icon: string;
@@ -9,4 +8,8 @@ export interface Cardpost {
   title: string;
   description: string;
   slug?: string;
+  image?:{
+    url: string;
+    alt: string;
+  }
 }

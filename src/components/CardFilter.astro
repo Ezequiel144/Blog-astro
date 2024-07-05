@@ -24,7 +24,7 @@ const { image, title, description, tag, slug } = Astro.props;
     <!-- <Tag tag={tag} /> -->
     <h2 class="text-3xl font-bold">{title}</h2>
     <p class="text-sm font-normal overflow-hidden w-full h-full" >
-      {description}
+      {description.slice(0,150)}
     </p>
   </div>
 </li>
