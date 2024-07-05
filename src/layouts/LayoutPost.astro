@@ -4,6 +4,7 @@ import Tag from "../components/news/Tag.astro";
 import Layout from "../layouts/Layout.astro";
 import Date from "../components/news/Date.astro";
 import { tagCard } from "../utils";
+import CardMini from "../components/CardMini.astro";
 
 const { frontmatter } = Astro.props;
 let tagAndIcon: { icon: string; name: string }[] = [];
@@ -12,10 +13,35 @@ frontmatter.tags.map((item: string) => {
     subItem.name === item ? tagAndIcon.push(subItem) : ""
   );
 });
+
+interface Frontmatter {
+  layout: string;
+  pubDate: string;
+  category: string;
+  description: string;
+  title: string;
+  image: {
+    url: string;
+    alt: string;
+  };
+  tags: string[];
+  slug: string;
+}
+interface Post {
+  frontmatter: Frontmatter;
+}
+
+const allPost: Post[] = await Astro.glob("/src/pages/post/*.md");
+
+const filterPostInteresting = allPost.filter(
+  (post: Post) => post.frontmatter.category === frontmatter.category
+);
+
+/* filterPostInteresting.forEach((item) => console.log(item.frontmatter)); */
 ---
 
 <Layout title="Post">
-  <main class="max-w-[1024px] mx-auto relative px-3 flex flex-col gap-y-5 my-4 ">
+  <main class="max-w-[1024px] mx-auto relative px-3 flex flex-col gap-y-5 my-4">
     <Date date={frontmatter.pubDate} />
     <h1 class="text-4xl md:text-7xl font-extrabold py-3">
       {frontmatter.title}
@@ -36,6 +62,34 @@ frontmatter.tags.map((item: string) => {
       format=".webs"
     />
     <slot />
+    <section class="w-full flex flex-col gap-y-3">
+      <h2 class="text-4xl font-extrabold">Te puede interesar</h2>
+      <div class=" overflow-hidden w-full py-4 swiffy-slider slider-item-show2 slider-item-reveal slider-nav-outside slider-nav-round slider-nav-visible slider-indicators-outside slider-indicators-round slider-indicators-dark slider-nav-animation slider-nav-animation-fadein">
+        <ul class="slider-container pb-10 w-full" >
+          {
+            filterPostInteresting.map((item: { frontmatter: Frontmatter }) => {
+              let valueTag = tagCard.filter(
+                (subitem: { name: string }) =>
+                  subitem.name === item.frontmatter.tags[0]
+              );
+              return (
+                <CardMini
+                  tag={valueTag[0]}
+                  title={item.frontmatter.title}
+                  description={item.frontmatter.description}
+                  slug={item.frontmatter.slug}
+                />
+              );
+            })
+          }
+        </ul>
+        <div class="slider-indicators slider-indicators-round">
+          <button class="active"></button>
+          <button></button>
+          <button></button>
+        </div>
+      </div>
+    </section>
   </main>
 </Layout>
 
@@ -53,11 +107,11 @@ frontmatter.tags.map((item: string) => {
     font-weight: 300;
     padding: 8px 0;
   }
-  p > img{
+  p > img {
     border-radius: 1.5rem;
   }
   @media (max-width: 500px) {
-    p{
+    main > p {
       font-size: 16px;
     }
   }
